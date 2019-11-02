@@ -16,22 +16,20 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <Bar/>
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Bar from '@/components/Bar.vue';
+import {Component, Vue} from 'vue-property-decorator';
+import Vuetify from 'vuetify';
 
-export default Vue.extend({
-  name: 'App',
-  components: {
-    HelloWorld,
-  },
-  data: () => ({
-    //
-  }),
-});
+Vue.use(Vuetify);
+
+@Component({
+  components: { Bar },
+})
+export default class App extends Vue {}
 </script>
