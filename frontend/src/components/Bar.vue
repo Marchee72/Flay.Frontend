@@ -8,12 +8,18 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
+import {Component, Vue} from "vue-property-decorator";
 
 @Component
 export default class Bar extends Vue {
     constructor() {
         super();
+        //let a = this.GetWeather();
+    }
+
+    private async GetWeather(){
+        const response = await fetch("/Flay.API/Controllers/weatherForecas/Get", { credentials: "same-origin" });
+        return (await response.json());
     }
 }
 </script>

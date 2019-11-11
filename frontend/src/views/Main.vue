@@ -1,18 +1,15 @@
 <template>
-  <Bar/>
+  <div>
+    <v-card>weldoja</v-card>
+  </div>
 </template>
 
-<script>
-import {Component, Vue} from 'vue-property-decorator';
-import Bar from 'components/Bar.vue';
+<script lang="ts">
 
-@Component({
-    components: {Bar},
-})
+import {Component, Vue} from "vue-property-decorator";
 
-@Path('/main')
-export default class Main extends Vue {
-}
+@Component
+export default class Main extends Vue {}
 </script>
 
 <style>

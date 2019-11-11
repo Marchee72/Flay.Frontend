@@ -1,36 +1,21 @@
 <template>
-  <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
-
-    <v-content>
-      <Bar/>
-    </v-content>
-  </v-app>
+  <div>
+    <Bar/>
+    <UserMenu/>
+    <router-view/>
+  </div>
 </template>
 
 <script lang="ts">
-import Bar from '@/components/Bar.vue';
-import {Component, Vue} from 'vue-property-decorator';
-import Vuetify from 'vuetify';
+import {Component, Vue} from "vue-property-decorator";
+import Vuetify from "vuetify";
+import UserMenu from "./components/UserMenu.vue";
+import Bar from "./components/Bar.vue";
 
-Vue.use(Vuetify);
+//Vue.use(Vuetify);
 
 @Component({
-  components: { Bar },
+  components: {UserMenu, Bar},
 })
-export default class App extends Vue {
-}
+export default class App extends Vue {}
 </script>
