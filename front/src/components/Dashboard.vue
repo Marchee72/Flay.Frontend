@@ -32,14 +32,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
 
 @Component
 export default class Dashboard extends Vue{
-    
+    items!: {color: string, src: string, nombre: string, direc: string}[];
     constructor(){
-        items: [
+      super();
+        this.items = [
         {
           color: '#1F7087',
           src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',

@@ -6,26 +6,7 @@
       clipped
     >
       <v-list dense>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
-              <router-link to="/dashboard">
-                Dashboard
-              </router-link>
-              </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-settings</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Settings</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        
       </v-list>
     </v-navigation-drawer>
 
@@ -33,7 +14,7 @@
       app
       clipped-left
       color="red"
-    >
+    > 
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title thin display-3>Flay</v-toolbar-title>
     </v-app-bar>
@@ -48,16 +29,25 @@
   </v-app>
 </template>
 
-<script>
-  export default {
-    props: {
-      source: String,
-    },
-    data: () => ({
-      drawer: null,
-    }),
-    created () {
-      this.$vuetify.theme.dark = true
-    },
+<script lang="ts">
+import {Component, Vue} from "vue-property-decorator";
+import SideMenu from "./components/SideMenu.vue";
+import Vuetify from "Vuetify";
+
+Vue.use(Vuetify);
+
+@Component({
+  components: {
+    SideMenu,
   }
+})
+export default class App extends Vue {
+  drawer!: boolean;
+
+  constructor() {
+    super();
+    this.$vuetify.theme.dark = true
+    this.drawer = false;
+  }
+}
 </script>
