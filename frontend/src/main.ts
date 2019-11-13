@@ -6,11 +6,9 @@ import router from "./routes";
 import "vuetify/dist/vuetify.min.css";
 
 Vue.config.productionTip = false;
-Vue.use(vuetify);
 
 new Vue({
 	store,
-	vuetify,
 	router,
 	render: (h) => h(App),
 }).$mount("#app");

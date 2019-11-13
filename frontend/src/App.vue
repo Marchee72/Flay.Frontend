@@ -12,8 +12,6 @@ import Vuetify from "vuetify";
 import UserMenu from "./components/UserMenu.vue";
 import Bar from "./components/Bar.vue";
 
-//Vue.use(Vuetify);
-
 @Component({
   components: {UserMenu, Bar},
 })
