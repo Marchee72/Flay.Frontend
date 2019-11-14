@@ -8,15 +8,13 @@
 
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
-          <v-list-item link v-for="item in this.actionItems" v-bind:key="item.name">
-            <router-link :to=item.url>
-            <v-list-item-action>
-              <v-icon>{{item.icon}}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>{{item.name}}</v-list-item-title>
-            </v-list-item-content>
-          </router-link>
+          <v-list-item link v-for="item in this.actionItems" v-bind:key="item.name" :to=item.url>
+              <v-list-item-action>
+                <v-icon>{{item.icon}}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>{{item.name}}</v-list-item-title>
+              </v-list-item-content>
           </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -51,8 +49,13 @@ export default class App extends Vue {
   private load() {
     //get permissions
     this.actionItems = [
-        { name: "Dashboard", url: "/dashboard", icon: "mdi-view-dashboard" }
+        { name: "Dashboard", url: "/dashboard", icon: "mdi-view-dashboard" },
+        { name: "Edifices", url: "/edifices", icon: "mdi-office-building"}
       ];
+  }
+
+  private redirect(url: string){
+    this.$router.push(url);
   }
 }
 </script>
