@@ -31,6 +31,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import weatherForecastService from "./services/exampleServices";
 import Vuetify from "vuetify";
 
 Vue.use(Vuetify);
@@ -46,16 +47,14 @@ export default class App extends Vue {
     this.load();
   }
 
-  private load() {
+  private async load() {
     //get permissions
     this.actionItems = [
         { name: "Dashboard", url: "/dashboard", icon: "mdi-view-dashboard" },
         { name: "Edifices", url: "/edifices", icon: "mdi-office-building"}
       ];
-  }
-
-  private redirect(url: string){
-    this.$router.push(url);
+      var a = await weatherForecastService.get();
+      console.log(a);
   }
 }
 </script>
