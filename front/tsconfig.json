@@ -15,7 +15,6 @@
     "types": [
       "vuetify",
       "webpack-env",
-      "reflect-metadata"
     ],
     "paths": {
       "@/*": [
@@ -26,7 +25,8 @@
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost",
+      "es6"
     ]
   },
   "include": [

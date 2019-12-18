@@ -30,14 +30,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import weatherForecastService from "./services/exampleServices";
+import { Component, Vue, Inject } from "vue-property-decorator";
 import Vuetify from "vuetify";
 
 Vue.use(Vuetify);
 
 @Component
 export default class App extends Vue {
+ 
   drawer!: boolean;
   actionItems!: { name: string; url: string; icon: string }[];
   constructor() {
@@ -48,13 +48,10 @@ export default class App extends Vue {
   }
 
   private async load() {
-    //get permissions
     this.actionItems = [
         { name: "Dashboard", url: "/dashboard", icon: "mdi-view-dashboard" },
         { name: "Edifices", url: "/edifices", icon: "mdi-office-building"}
       ];
-      var a = await weatherForecastService.get();
-      console.log(a);
   }
 }
 </script>

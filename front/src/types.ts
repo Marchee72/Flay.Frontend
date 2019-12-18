@@ -1,5 +1,5 @@
 const TYPES = {
-    WeatherForecast: Symbol.for("WeatherForecast"),
+    IForecast: Symbol.for("IForecast")
 };
 
 export { TYPES };
