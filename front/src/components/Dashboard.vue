@@ -19,10 +19,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Inject } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
+import { IForecastService } from "../Interfaces/IForecastService";
+import { Inject } from "inversify-props";
+import ForecastModel from "../models/ForecastModel";
 
 @Component
 export default class Dashboard extends Vue {
+  @Inject() forecastService!: IForecastService;
+
   items!: { color: string; src: string; nombre: string; direc: string }[];
   constructor() {
     super();
@@ -40,6 +45,15 @@ export default class Dashboard extends Vue {
         direc: "Segurola y Havanna"
       }
     ];
+    this.showItems();
+  }
+
+  private async showItems() {
+    var a: ForecastModel[] = await this.forecastService.get();
+    console.log(a);
+    for (var weather of a) {
+      this.items.push({color: "red", src: "", nombre: weather.Date, direc: weather.Summary});
+    }
   }
 }
 </script>

@@ -15,6 +15,7 @@
     "types": [
       "vuetify",
       "webpack-env",
+      "reflect-metadata",
     ],
     "paths": {
       "@/*": [
