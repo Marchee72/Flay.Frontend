@@ -30,6 +30,7 @@
 </template>
 
 <script lang="ts">
+import "reflect-metadata";
 import { Component, Vue, Inject } from "vue-property-decorator";
 import Vuetify from "vuetify";
 

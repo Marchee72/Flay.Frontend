@@ -4,7 +4,7 @@
       <v-card :color="item.color" dark>
         <div class="d-flex flex-no-wrap justify-space-between">
           <div>
-            <v-card-title class="headline" v-text="item.nombre"></v-card-title>
+            <v-card-title class="headline" v-text="item.nombre" v-on:click="showItems()"></v-card-title>
 
             <v-card-subtitle v-text="item.direc"></v-card-subtitle>
           </div>
@@ -26,7 +26,7 @@ import ForecastModel from "../models/ForecastModel";
 
 @Component
 export default class Dashboard extends Vue {
-  @Inject() forecastService!: IForecastService;
+  @Inject() forecastService: IForecastService;
 
   items!: { color: string; src: string; nombre: string; direc: string }[];
   constructor() {
@@ -45,14 +45,13 @@ export default class Dashboard extends Vue {
         direc: "Segurola y Havanna"
       }
     ];
-    this.showItems();
   }
 
   private async showItems() {
     var a: ForecastModel[] = await this.forecastService.get();
     console.log(a);
     for (var weather of a) {
-      this.items.push({color: "red", src: "", nombre: weather.Date, direc: weather.Summary});
+      this.items.push({color: "red", src: "", nombre: weather.date, direc: weather.summary});
     }
   }
 }

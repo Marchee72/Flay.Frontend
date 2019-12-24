@@ -1,6 +1,6 @@
 export default class ForecastModel {
-    public Date!: string;
-    public TemperatureC!: string;
-    public TemperatureF!: string;
-    public Summary!: string;
+    public date!: string;
+    public temperatureC!: string;
+    public temperatureF!: string;
+    public summary!: string;
 }
