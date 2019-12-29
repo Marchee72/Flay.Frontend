@@ -42,7 +42,7 @@ export default class Dashboard extends Vue {
         color: "#952175",
         src: "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
         nombre: "Edificio 2",
-        direc: "Segurola y Havanna"
+        direc: "Segurola y Habana"
       }
     ];
   }
