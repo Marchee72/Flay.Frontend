@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <v-col v-for="(item, i) in items" :key="i" cols="12">
       <v-card :color="item.color" dark>
         <div class="d-flex flex-no-wrap justify-space-between">
@@ -15,7 +15,7 @@
         </div>
       </v-card>
     </v-col>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">

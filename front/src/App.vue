@@ -1,8 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-content fluid>
-       <router-view></router-view>>
-
+       <router-view></router-view>
     </v-content>
   </v-app>
 </template>
@@ -18,20 +17,9 @@ Vue.use(Vuetify);
 @Component
 export default class App extends Vue {
  
-  drawer!: boolean;
-  actionItems!: { name: string; url: string; icon: string }[];
   constructor() {
     super();
     this.$vuetify.theme.dark = true;
-    this.drawer = false;
-    this.load();
-  }
-
-  private async load() {
-    this.actionItems = [
-        { name: "Dashboard", url: "/dashboard", icon: "mdi-view-dashboard" },
-        { name: "Edifices", url: "/edifices", icon: "mdi-office-building"}
-      ];
   }
 }
 </script>
