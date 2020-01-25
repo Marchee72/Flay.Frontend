@@ -15,10 +15,7 @@ import { Component, Vue } from "vue-property-decorator";
 import AppLayout from "../components/AppLayout.vue";
 
 @Component({ components: { AppLayout } })
-export default class Template extends Vue {
-  drawer!: boolean;
-  actionItems!: { name: string; url: string; icon: string }[];
-}
+export default class Template extends Vue {}
 </script>
 
 <style>

@@ -1,6 +1,6 @@
 <template>
     <v-app light>
-      <v-app-bar absolute fixed color="red" elevate-on-scroll>
+      <v-app-bar app clipped-left color="red">
         <v-btn icon>
           <v-icon large>mdi-city</v-icon>
         </v-btn>
