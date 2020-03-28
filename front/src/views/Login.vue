@@ -10,28 +10,34 @@
                 <v-spacer />
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <v-form
+                  ref="form"
+                  v-model="valid">
                   <v-text-field
                     label="Username"
                     name="username"
+                    :rules="[v => !!v || 'Username is required']"
                     prepend-icon="person"
                     type="text"
                     v-model="user"
+                    required
                   />
 
                   <v-text-field
                     id="password"
                     label="Password"
                     name="password"
+                    :rules="[v => !!v || 'Password is required']"
                     prepend-icon="lock"
                     type="password"
                     v-model="pass"
+                    required
                   />
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary" v-on:click="login">Login</v-btn>
+                <v-btn color="primary" @click="login">Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -48,16 +54,21 @@ import { Inject } from "inversify-props";
 
 @Component
 export default class Login extends Vue {
-    @Inject("Authentication") private authenticationService: IAuthService;
+    @Inject("Authentication") private authenticationService!: IAuthService;
       user!: string;
       pass!: string;
+      valid!: boolean;
     constructor() {
       super();
       this.user = "";
       this.pass = "";
+      this.valid = true;
     }
+
     login(){
-      var promise = this.authenticationService.authenticate(this.user, this.pass);
+      this.$refs.form.validate();
+      if(this.valid)
+        var promise = this.authenticationService.authenticate(this.user, this.pass);
     }
 }
 </script>
