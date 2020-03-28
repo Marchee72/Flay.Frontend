@@ -16,6 +16,7 @@
                     name="username"
                     prepend-icon="person"
                     type="text"
+                    v-model="user"
                   />
 
                   <v-text-field
@@ -24,12 +25,13 @@
                     name="password"
                     prepend-icon="lock"
                     type="password"
+                    v-model="pass"
                   />
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary" to="/dashboard">Login</v-btn>
+                <v-btn color="primary" v-on:click="login">Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -41,7 +43,21 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { IAuthService } from "@/interfaces/IAuthService";
+import { Inject } from "inversify-props";
 
 @Component
-export default class Login extends Vue {}
+export default class Login extends Vue {
+    @Inject("Authentication") private authenticationService: IAuthService;
+      user!: string;
+      pass!: string;
+    constructor() {
+      super();
+      this.user = "";
+      this.pass = "";
+    }
+    login(){
+      var promise = this.authenticationService.authenticate(this.user, this.pass);
+    }
+}
 </script>

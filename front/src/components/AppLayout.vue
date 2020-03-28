@@ -42,7 +42,7 @@ export default class AppLayout extends Vue {
   private async load() {
     this.actionItems = [
       { name: "Dashboard", url: "/dashboard", icon: "mdi-view-dashboard" },
-      { name: "Edifices", url: "/edifices", icon: "mdi-office-building" }
+      { name: "Edificios", url: "/edificios", icon: "mdi-office-building" }
     ];
   }
 }
