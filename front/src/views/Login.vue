@@ -12,11 +12,13 @@
               <v-card-text>
                 <v-form
                   ref="form"
-                  v-model="valid">
+                  v-model="valid"
+                  >
                   <v-text-field
                     label="Username"
                     name="username"
                     :rules="[v => !!v || 'Username is required']"
+                    @keyup.enter="login"
                     prepend-icon="person"
                     type="text"
                     v-model="user"
@@ -28,6 +30,7 @@
                     label="Password"
                     name="password"
                     :rules="[v => !!v || 'Password is required']"
+                    @keyup.enter="login"
                     prepend-icon="lock"
                     type="password"
                     v-model="pass"
@@ -51,6 +54,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { IAuthService } from "@/interfaces/IAuthService";
 import { Inject } from "inversify-props";
+import router from '../router';
 
 @Component
 export default class Login extends Vue {
@@ -65,10 +69,15 @@ export default class Login extends Vue {
       this.valid = true;
     }
 
-    login(){
+    async login(){
       this.$refs.form.validate();
       if(this.valid)
-        var promise = this.authenticationService.authenticate(this.user, this.pass);
+        var user = await this.authenticationService.authenticate(this.user, this.pass);
+        if(user.username && user.token){
+          localStorage.setItem("user", JSON.stringify(user));
+          console.log("Welcome " + user.username);
+          router.push({name: "dashboard"});
+        }
     }
 }
 </script>
