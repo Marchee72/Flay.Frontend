@@ -1,7 +1,12 @@
 <template>
   <v-app id="inspire">
-    <v-content>
-        <v-container class="fill-height" fluid>
+    <v-container class="fill-height" fluid>
+      <v-content>
+        <v-parallax
+          class="fill-height"
+          src="../resources/img/monumento.jpg"
+          height="500"
+        >
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="4">
               <v-card class="elevation-12">
@@ -42,8 +47,9 @@
               </v-card>
             </v-col>
           </v-row>
-        </v-container>
-    </v-content>
+        </v-parallax>
+      </v-content>
+    </v-container>
   </v-app>
 </template>
 
