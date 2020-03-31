@@ -2,12 +2,13 @@ import { injectable } from "inversify-props";
 import { User } from "@/models/User";
 import { IAuthService } from "@/interfaces/IAuthService";
 import authHeader from "@/helpers/auth-header";
+import URL from "@/helpers/url-builder";
 
 @injectable()
 export class AuthService implements IAuthService {
 
   public async authenticate(username: string, password: string): Promise<User> {
-    const promise = await fetch("http://localhost:60304/user/authenticate", {
+    const promise = await fetch(URL("user", "authenticate"), {
       headers: {
         "Content-Type": "application/json"
       },
@@ -19,7 +20,7 @@ export class AuthService implements IAuthService {
   }
 
   public async test(): Promise<string>{
-    const promise = await fetch("http://localhost:60304/user/test", {
+    const promise = await fetch(URL("user", "test"), {
       headers: authHeader(),
       credentials: "same-origin",
       method: "POST"
