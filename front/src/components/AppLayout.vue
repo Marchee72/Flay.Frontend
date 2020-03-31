@@ -3,6 +3,11 @@
     <v-app-bar app clipped-left color="red">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title thin display-3>Flay</v-toolbar-title>
+      <v-spacer></v-spacer>
+
+      <v-btn @click="logout">
+        Logout
+      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" app clipped>
@@ -27,6 +32,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import router from "../router";
 
 @Component
 export default class AppLayout extends Vue {
@@ -44,6 +50,11 @@ export default class AppLayout extends Vue {
       { name: "Dashboard", url: "/dashboard", icon: "mdi-view-dashboard" },
       { name: "Edificios", url: "/edificios", icon: "mdi-office-building" }
     ];
+  }
+
+  logout(){
+    localStorage.removeItem("user");
+    router.push({name: "home"});
   }
 }
 </script>

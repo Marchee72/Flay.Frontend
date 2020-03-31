@@ -6,5 +6,5 @@ import {AuthService} from "./services/AuthService";
 
 
 export function containerBuilder() {
-    container.addSingleton<IAuthService>(AuthService, "Authentication");
+    container.addTransient<IAuthService>(AuthService, "Authentication");
 }

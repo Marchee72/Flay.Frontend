@@ -1,5 +1,6 @@
 <template>
   <section>
+  <v-btn @click="showItems">Test</v-btn>
     <v-container fluid>
       <v-row dense>
         <v-col v-for="(item, i) in items" :key="i" :cols="2">
@@ -9,6 +10,7 @@
             :img="item.src"
             :id="i"
             :desc="item.color"
+            @click="showItems"
           />
         </v-col>
       </v-row>
@@ -18,14 +20,13 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-//import { IForecastService } from "../Interfaces/IForecastService";
+import { IAuthService } from "@/interfaces/IAuthService";
 import { Inject } from "inversify-props";
-import ForecastModel from "../models/ForecastModel";
 import BuildingCard from "../components/BuildingCard.vue";
 
 @Component({ components: { BuildingCard } })
-export default class Dashboard extends Vue {
-
+export default class Dashboard extends Vue {  
+  @Inject("Authentication") private authenticationService!: IAuthService;
   items!: { color: string; src: string; nombre: string; direc: string }[];
   constructor() {
     super();
@@ -61,18 +62,11 @@ export default class Dashboard extends Vue {
         direc: "Segurola y Habana"
       }
     ];
-    var a = this.showItems()
   }
 
   private async showItems() {
-    // for (var weather of a) {
-    //   this.items.push({
-    //     color: "red",
-    //     src: "",
-    //     nombre: weather.date,
-    //     direc: weather.summary
-    //   });
-    //}
+    var a = await this.authenticationService.test();
+    console.log(a);
   }
 }
 </script>
