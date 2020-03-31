@@ -27,4 +27,13 @@ export class AuthService implements IAuthService {
     });
     return (await promise.json()) as string;
   }
+
+  public async getTest(): Promise<string>{
+    const promise = await fetch(URL("user", "gettest", "name", "culito"), {
+      headers: authHeader(),
+      credentials: "same-origin",
+      method: "GET"
+    });
+    return (await promise.json()) as string;
+  }
 }

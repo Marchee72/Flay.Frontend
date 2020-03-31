@@ -65,7 +65,7 @@ export default class Dashboard extends Vue {
   }
 
   private async showItems() {
-    var a = await this.authenticationService.test();
+    var a = await this.authenticationService.getTest();
     console.log(a);
   }
 }
