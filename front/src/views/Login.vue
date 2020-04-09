@@ -16,10 +16,14 @@
                 </v-toolbar>
                 <v-card-text>
                   <v-form ref="form" v-model="valid">
+                  <p class="text-center red--text" v-if="error">
+                    {{error}}
+                  </p>
                     <v-text-field
                       label="Username"
                       name="username"
                       :rules="[v => !!v || 'Username is required']"
+                      :error="badLogin"
                       @keyup.enter="login"
                       prepend-icon="person"
                       type="text"
@@ -32,6 +36,7 @@
                       label="Password"
                       name="password"
                       :rules="[v => !!v || 'Password is required']"
+                      :error="badLogin"
                       @keyup.enter="login"
                       prepend-icon="lock"
                       type="password"
@@ -65,26 +70,30 @@ export default class Login extends Vue {
   user!: string;
   pass!: string;
   valid!: boolean;
+  error!: string;
+  badLogin!: boolean;
   constructor() {
     super();
     this.user = "";
     this.pass = "";
+    this.error = "";
     this.valid = true;
+    this.badLogin = false;
   }
 
   async login() {
+    this.badLogin = false;
     this.$refs.form.validate();
     if (this.valid)
-      var user = await this.authenticationService.authenticate(
-        this.user,
-        this.pass
-      );
+      var user = await this.authenticationService.authenticate(this.user, this.pass);
     if (user.username && user.token) {
       localStorage.setItem("user", JSON.stringify(user));
       console.log("Welcome " + user.username);
       router.push({ name: "dashboard" });
     }
-    this.valid = false;
+    this.$refs.form.resetValidation();
+    this.badLogin = true;
+    this.error = "User or password invalid";
   }
 }
 </script>
