@@ -1,6 +1,6 @@
 <template>
-  <v-app app>
-    <AppLayout />
+  <v-app app root>
+    <AppLayout/>
 
     <router-view></router-view>
 

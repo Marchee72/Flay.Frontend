@@ -26,6 +26,16 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-switch
+            v-model="$vuetify.theme.dark"
+            hide-details
+            inset
+            label="Dark theme"
+          ></v-switch>
+        </div>
+      </template>
     </v-navigation-drawer>
   </div>
 </template>
@@ -33,13 +43,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import router from "../router";
-import {Access} from "@models/Access"
+import { Access } from "@models/Access";
 import { IUserService } from "@/interfaces/IUserService";
 import { Inject } from "inversify-props";
 
 @Component
 export default class AppLayout extends Vue {
-    @Inject("Users") private userService!: IUserService;
+  @Inject("Users") private userService!: IUserService;
 
   drawer!: boolean;
   actionItems!: Access[];
@@ -53,9 +63,9 @@ export default class AppLayout extends Vue {
     this.actionItems = await this.userService.getUserPermissions();
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem("user");
-    router.push({name: "home"});
+    router.push({ name: "home" });
   }
 }
 </script>
