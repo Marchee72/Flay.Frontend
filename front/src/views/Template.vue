@@ -17,7 +17,6 @@ import AppLayout from "../components/AppLayout.vue";
 @Component({ components: { AppLayout } })
 export default class Template extends Vue {
  const year = new Date().getFullYear();
-
 }
 </script>
 

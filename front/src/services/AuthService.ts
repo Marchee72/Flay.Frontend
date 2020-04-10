@@ -8,7 +8,7 @@ import {URL} from "@/helpers/http-helpers";
 export class AuthService implements IAuthService {
 
   public async authenticate(username: string, password: string): Promise<User> {
-    const promise = await fetch(URL("user", "authenticate"), {
+    const promise = await fetch(URL("auth", "authenticate"), {
       headers: {
         "Content-Type": "application/json"
       },
@@ -20,7 +20,7 @@ export class AuthService implements IAuthService {
   }
 
   public async test(): Promise<string>{
-    const promise = await fetch(URL("user", "test"), {
+    const promise = await fetch(URL("auth", "test"), {
       headers: authHeader(),
       credentials: "same-origin",
       method: "POST"
@@ -29,7 +29,7 @@ export class AuthService implements IAuthService {
   }
 
   public async getTest(): Promise<string>{
-    const promise = await fetch(URL("user", "gettest", "name", "culito"), {
+    const promise = await fetch(URL("auth", "gettest", "name", "culito"), {
       headers: authHeader(),
       credentials: "same-origin",
       method: "GET"

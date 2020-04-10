@@ -16,7 +16,7 @@
           link
           v-for="item in this.actionItems"
           v-bind:key="item.name"
-          :to="item.url"
+          :to="item.link"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -33,23 +33,24 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import router from "../router";
+import {Access} from "@models/Access"
+import { IUserService } from "@/interfaces/IUserService";
+import { Inject } from "inversify-props";
 
 @Component
 export default class AppLayout extends Vue {
+    @Inject("Users") private userService!: IUserService;
+
   drawer!: boolean;
-  actionItems!: { name: string; url: string; icon: string }[];
+  actionItems!: Access[];
   constructor() {
     super();
     this.$vuetify.theme.dark = true;
     this.drawer = false;
-    this.load();
   }
 
-  private async load() {
-    this.actionItems = [
-      { name: "Dashboard", url: "/dashboard", icon: "mdi-view-dashboard" },
-      { name: "Edificios", url: "/edificios", icon: "mdi-office-building" }
-    ];
+  private async created() {
+    this.actionItems = await this.userService.getUserPermissions();
   }
 
   logout(){
