@@ -10,17 +10,20 @@ Vue.use(VueRouter);
 const routes = [
   { path: "/login", name: "login", component: Login },
   { path: "/home", name: "home", component: Home },
-  { path: "/", redirect: {name: "home"} },
-  { path: "/flay", name: "flay",component: Template,
-    children:[
-      {path: "/dashboard", name: "dashboard", component: Dashboard},
-    ]
+  { path: "/", redirect: { name: "home" } },
+  {
+    path: "/flay",
+    name: "flay",
+    component: Template,
+    children: [{ path: "/dashboard", name: "dashboard", component: Dashboard }]
   },
 
   {
-    path: "/about", name: "about", component: () =>
+    path: "/about",
+    name: "about",
+    component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
-  },
+  }
 ];
 
 const router = new VueRouter({
@@ -35,11 +38,13 @@ router.beforeEach((to, from, next) => {
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem("user");
 
-  if (authRequired && !loggedIn) {
+  if (authRequired && !loggedIn) return next("/login");
+  if (!authRequired && loggedIn) {
+    localStorage.removeItem("user");
     return next("/login");
   }
 
   next();
-})
+});
 
 export default router;

@@ -1,6 +1,5 @@
 <template>
   <section>
-  <v-btn @click="showItems">Test</v-btn>
     <v-container fluid>
       <v-row dense>
         <v-col v-for="(item, i) in items" :key="i" :cols="2">
