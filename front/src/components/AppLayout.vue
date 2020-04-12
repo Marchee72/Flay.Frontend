@@ -41,9 +41,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import router from "../router";
-import { Access } from "@models/Access";
+import { Access } from "@/models/Access";
 import { IUserService } from "@/interfaces/IUserService";
 import { Inject } from "inversify-props";
 
@@ -55,7 +55,7 @@ export default class AppLayout extends Vue {
   actionItems!: Access[];
   constructor() {
     super();
-    this.$vuetify.theme.dark = true;
+    this.applyTheme();
     this.drawer = false;
   }
 
@@ -64,8 +64,18 @@ export default class AppLayout extends Vue {
   }
 
   logout() {
-    localStorage.removeItem("user");
+    localStorage.clear();
     router.push({ name: "home" });
+  }
+
+  applyTheme() {
+    var darkTheme = JSON.parse(localStorage.getItem("darkTheme"));
+    this.$vuetify.theme.dark = darkTheme;
+  }
+
+  @Watch("$vuetify.theme.dark")
+  protected saveTheme() {
+    localStorage.setItem("darkTheme", this.$vuetify.theme.dark);
   }
 }
 </script>
