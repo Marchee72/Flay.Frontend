@@ -4,7 +4,7 @@ export default function authHeader() {
   if (!json) return;
   var user = JSON.parse(json);
   if (user && user.token) {
-    return { Authorization: "Bearer " + user.token };
+    return { "Content-Type": "application/json",  Authorization: "Bearer " + user.token };
   }
   return;
 }

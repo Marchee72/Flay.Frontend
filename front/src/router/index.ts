@@ -4,24 +4,21 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Template from "../views/Template.vue";
 import Dashboard from "../views/Dashboard.vue";
+import Profile from "../views/Profile.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/login", name: "login", component: Login },
-  { path: "/home", name: "home", component: Home },
   { path: "/", redirect: { name: "home" } },
-  {
-    path: "/flay",
-    name: "flay",
-    component: Template,
-    children: [{ path: "/dashboard", name: "dashboard", component: Dashboard }]
+  { path: "/home", name: "home", component: Home },
+  { path: "/login", name: "login", component: Login },
+  { path: "/flay", name: "flay", component: Template,
+    children: [
+      { path: "/dashboard", name: "dashboard", component: Dashboard },
+      { path: "/profile", name: "profile", component: Profile },
+    ]
   },
-
-  {
-    path: "/about",
-    name: "about",
-    component: () =>
+  { path: "/about", name: "about", component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   }
 ];
@@ -40,7 +37,7 @@ router.beforeEach((to, from, next) => {
 
   if (authRequired && !loggedIn) return next("/login");
   if (!authRequired && loggedIn) {
-    localStorage.removeItem("user");
+    localStorage.clear();
     return next("/login");
   }
 

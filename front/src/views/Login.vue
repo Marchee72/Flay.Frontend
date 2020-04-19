@@ -16,9 +16,9 @@
                 </v-toolbar>
                 <v-card-text>
                   <v-form ref="form" v-model="valid">
-                  <p class="text-center red--text" v-if="error">
-                    {{error}}
-                  </p>
+                    <p class="text-center red--text" v-if="error">
+                      {{ error }}
+                    </p>
                     <v-text-field
                       label="Username"
                       name="username"
@@ -74,6 +74,8 @@ export default class Login extends Vue {
   badLogin!: boolean;
   constructor() {
     super();
+    if(!this.$vuetify.theme.dark) this.$vuetify.theme.dark = true;
+
     this.user = "";
     this.pass = "";
     this.error = "";
@@ -85,7 +87,10 @@ export default class Login extends Vue {
     this.badLogin = false;
     this.$refs.form.validate();
     if (this.valid)
-      var user = await this.authenticationService.authenticate(this.user, this.pass);
+      var user = await this.authenticationService.authenticate(
+        this.user,
+        this.pass
+      );
     if (user.username && user.token) {
       localStorage.setItem("user", JSON.stringify(user));
       console.log("Welcome " + user.username);

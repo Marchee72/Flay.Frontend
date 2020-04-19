@@ -12,6 +12,21 @@
 
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
+        <v-list-item two-line to="/profile">
+          <v-list-item-avatar>
+            <v-img v-bind:src="image" />
+          </v-list-item-avatar>
+        
+          <v-list-item-content>
+            <v-list-item-title
+              >{{ user.name }} {{ user.lastname }}</v-list-item-title
+            >
+            <v-list-item-subtitle>{{ user.role.name }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
         <v-list-item
           link
           v-for="item in this.actionItems"
@@ -53,14 +68,20 @@ export default class AppLayout extends Vue {
 
   drawer!: boolean;
   actionItems!: Access[];
+  user!: User;
+  image!: string;
   constructor() {
     super();
     this.applyTheme();
     this.drawer = false;
+
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 
   private async created() {
     this.actionItems = await this.userService.getUserPermissions();
+    this.image = await this.userService.getProfilePicture();
+    console.log(this.image);
   }
 
   logout() {

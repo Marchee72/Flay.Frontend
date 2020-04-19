@@ -199,7 +199,7 @@ import { Component, Vue } from "vue-property-decorator";
 export default class Home extends Vue {
   constructor(){
     super();
-    this.$vuetify.theme.dark = true;
+    if(!this.$vuetify.theme.dark) this.$vuetify.theme.dark = true;
   }
 }
 </script>

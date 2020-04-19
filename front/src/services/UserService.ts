@@ -14,5 +14,22 @@ export class UserService implements IUserService {
           });
           return (await promise.json()) as Access[];
     }
-    
+
+    updateProfilePicture(image: string): void {
+        fetch(URL("user", "updateImage"), {
+            headers: authHeader(),
+            credentials: "same-origin",
+            method: "POST",
+            body: JSON.stringify(image)
+        });
+    }
+
+    async getProfilePicture(): Promise<string> {
+        const promise = await fetch(URL("user", "getProfilePicture"), {
+            headers: authHeader(),
+            credentials: "same-origin",
+            method: "GET",
+        });
+        return (await promise.json()) as string;
+    }
 }
