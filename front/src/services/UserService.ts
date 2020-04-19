@@ -32,4 +32,12 @@ export class UserService implements IUserService {
         });
         return (await promise.json()) as string;
     }
+
+    removeProfilePicture(): void {
+        fetch(URL("user", "removeProfilePicture"), {
+            headers: authHeader(),
+            credentials: "same-origin",
+            method: "GET",
+        });
+    }
 }

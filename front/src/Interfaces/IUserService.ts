@@ -4,4 +4,5 @@ export interface IUserService {
     getUserPermissions(): Promise<Access[]>;
     updateProfilePicture(img: string) : void;
     getProfilePicture(): Promise<string>;
+    removeProfilePicture(): void;
 }

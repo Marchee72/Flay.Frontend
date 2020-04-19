@@ -13,8 +13,9 @@
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
         <v-list-item two-line to="/profile">
-          <v-list-item-avatar>
-            <v-img v-bind:src="image" />
+          <v-list-item-avatar  color="orange">
+            <v-img v-if="image" v-bind:src="image" />
+            <span v-else class="white--text headline">{{this.avatar}}</span>
           </v-list-item-avatar>
         
           <v-list-item-content>
@@ -70,18 +71,21 @@ export default class AppLayout extends Vue {
   actionItems!: Access[];
   user!: User;
   image!: string;
+  avatar!: string;
+
   constructor() {
     super();
     this.applyTheme();
     this.drawer = false;
-
+    this.image = null;
+    this.actionItems = [];
     this.user = JSON.parse(localStorage.getItem("user"));
+    this.avatar = (this.user.name[0] + this.user.lastname[0]).toUpperCase();
   }
 
   private async created() {
     this.actionItems = await this.userService.getUserPermissions();
     this.image = await this.userService.getProfilePicture();
-    console.log(this.image);
   }
 
   logout() {

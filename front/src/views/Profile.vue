@@ -11,13 +11,13 @@
       placeholder="Pick an avatar"
       prepend-icon="mdi-camera"
       label="Avatar"
-      v-model="picture"
     ></v-file-input>
     <v-btn @click="save">
       Save
     </v-btn>
-    imagen:
-    <v-img :src="img" />
+    <v-btn @click="deletePicture">
+      Delete
+    </v-btn>
   </section>
 </template>
 
@@ -26,20 +26,21 @@ import { Component, Vue } from "vue-property-decorator";
 import { IUserService } from "@/interfaces/IUserService";
 import { Inject } from "inversify-props";
 import toBase64 from "@/helpers/img-helpers";
+
 @Component
 export default class Profile extends Vue {
   @Inject("Users") private userService!: IUserService;
 
   picture!: File;
   img!: string;
+
   async save() {
-    console.log(this.picture);
     var base64 = await toBase64(this.picture);
-    this.img = "data:image/png;base64," + base64;
-    //this.userService.updateProfilePicture(base64);
+    this.userService.updateProfilePicture(base64);
   }
-  async showImg() {
-      this.img = await toBase64(this.picture);
+
+  async deletePicture(){
+      this.userService.removeProfilePicture();
   }
 }
 </script>
