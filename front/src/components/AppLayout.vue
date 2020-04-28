@@ -14,7 +14,7 @@
       <v-list dense>
         <v-list-item two-line to="/profile">
           <v-list-item-avatar  color="orange">
-            <v-img v-if="image" v-bind:src="image" />
+            <v-img v-if="image" :src="image" />
             <span v-else class="white--text headline">{{this.avatar}}</span>
           </v-list-item-avatar>
         
@@ -64,7 +64,7 @@ import { IUserService } from "@/interfaces/IUserService";
 import { Inject } from "inversify-props";
 
 @Component
-export default class AppLayout extends Vue {
+export default class appLayout extends Vue {
   @Inject("Users") private userService!: IUserService;
 
   drawer!: boolean;

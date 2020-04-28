@@ -3,6 +3,7 @@ import { Access } from "@/models/Access";
 import authHeader from "@/helpers/auth-header";
 import {URL} from "@/helpers/http-helpers";
 import { IUserService } from "@/interfaces/IUserService";
+import { User } from "@/models/User";
 
 @injectable()
 export class UserService implements IUserService {
@@ -39,5 +40,14 @@ export class UserService implements IUserService {
             credentials: "same-origin",
             method: "GET",
         });
+    }
+
+    async getUserInformation(): Promise<User> {
+        const promise = await fetch(URL("user", "getUser"), {
+            headers: authHeader(),
+            credentials: "same-origin",
+            method: "GET",
+        });
+        return (await promise.json()) as User;
     }
 }

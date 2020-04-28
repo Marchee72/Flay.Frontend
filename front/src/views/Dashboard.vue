@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row dense>
         <v-col v-for="(item, i) in items" :key="i" :cols="2">
-          <BuildingCard
+          <buildingCard
             :name="item.nombre"
             :adress="item.direc"
             :img="item.src"
@@ -19,9 +19,9 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { IAuthService } from "@/interfaces/IAuthService";
-import BuildingCard from "../components/BuildingCard.vue";
+import buildingCard from "../components/buildingCard.vue";
 
-@Component({ components: { BuildingCard } })
+@Component({ components: { buildingCard } })
 export default class Dashboard extends Vue {  
   items!: { color: string; src: string; nombre: string; direc: string }[];
   constructor() {

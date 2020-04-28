@@ -1,6 +1,6 @@
 <template>
   <v-app app root>
-    <AppLayout/>
+    <appLayout/>
 
     <router-view></router-view>
 
@@ -12,9 +12,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import AppLayout from "../components/AppLayout.vue";
+import appLayout from "../components/appLayout.vue";
 
-@Component({ components: { AppLayout } })
+@Component({ components: { appLayout } })
 export default class Template extends Vue {
  const year = new Date().getFullYear();
 }
