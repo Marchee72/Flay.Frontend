@@ -4,7 +4,11 @@
       <v-form>
         <v-row justify="space-around">
           <v-col cols="3">
-            <profileImg :src="this.src" :initials="this.initials" align="center"/>
+            <profileImg
+              :src="this.src"
+              :initials="this.initials"
+              align="center"
+            />
             <v-file-input
               :rules="[
                 (value) =>
@@ -20,14 +24,19 @@
             ></v-file-input>
           </v-col>
           <v-col cols="8">
-            <h1 align="center" class="font-weight-thin display-4 text-capitalize">{{  this.user.name }} {{  this.user.lastname }}</h1>
+            <h1
+              align="center"
+              class="font-weight-thin display-4 text-capitalize"
+            >
+              {{ this.user.name }} {{ this.user.lastname }}
+            </h1>
           </v-col>
           <v-col cols="8"> </v-col>
         </v-row>
-        <v-btn @click="save">Save </v-btn>
-        <v-btn @click="deletePicture">
-          Delete
-        </v-btn>
+        <v-btn-toggle v-model="toggle_exclusive" rounded>
+          <v-btn color="primary" @click="save">Save </v-btn>
+          <v-btn  color="default" @click="deletePicture"> Delete </v-btn>
+        </v-btn-toggle>
       </v-form>
     </v-col>
   </v-container>
@@ -38,7 +47,6 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import { IUserService } from "@/interfaces/IUserService";
 import { Inject } from "inversify-props";
 import { toBase64, generateRandomColor } from "@/helpers/img-helpers";
-import { capitalizeAllFirstLetters } from "@/helpers/text-helper";
 import { User } from "../models/User";
 import profileImg from "@/components/profileImg.vue";
 
@@ -61,7 +69,7 @@ export default class Profile extends Vue {
   async created() {
     this.src = await this.userService.getProfilePicture();
     this.user = await this.userService.getUserInformation();
-    this.initials = this.user.name[0] + this.user.lastname[0]; 
+    this.initials = this.user.name[0] + this.user.lastname[0];
   }
 
   async save() {
@@ -80,5 +88,4 @@ export default class Profile extends Vue {
   }
 }
 </script>
-<style>
-</style>
+<style></style>

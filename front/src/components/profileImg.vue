@@ -16,7 +16,7 @@
           class="white--text display-4 text-uppercase font-weight-thin"
           >{{ this.initials }}</span
         >
-        <v-btn
+        <!-- <v-btn
           class="d-flex align-end"
           @click="$refs.file.click()"
           color="orange"
@@ -26,9 +26,9 @@
           fab
         >
           <v-icon>mdi-pencil-outline</v-icon>
-        </v-btn>
+        </v-btn> -->
       </v-avatar>
-    <input type="file" :src="src" ref="file" style="display: none" />
+    <!-- <input type="file" :src="src" ref="file" style="display: none" /> -->
   </v-container>
 </template>
 

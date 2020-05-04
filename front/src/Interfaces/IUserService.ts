@@ -6,5 +6,6 @@ export interface IUserService {
     updateProfilePicture(img: string) : void;
     getProfilePicture(): Promise<string>;
     removeProfilePicture(): void;
-    getUserInformation(): Promise<User>
+    getUserInformation(): Promise<User>;
+    getAllUsers(): Promise<User[]>;
 }

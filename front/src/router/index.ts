@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import Template from "../views/Template.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Profile from "../views/Profile.vue";
+import Users from "../views/Users.vue";
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,7 @@ const routes = [
     children: [
       { path: "/dashboard", name: "dashboard", component: Dashboard },
       { path: "/profile", name: "profile", component: Profile },
+      { path: "/users", name: "users", component: Users },
     ]
   },
   { path: "/about", name: "about", component: () =>

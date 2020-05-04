@@ -1,5 +1,5 @@
-export class Access {
-    name!: string;
-    link!: string;
-    icon!: string;
+export interface Access {
+    name: string;
+    link: string;
+    icon: string;
 }

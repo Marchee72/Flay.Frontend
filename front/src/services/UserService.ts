@@ -7,6 +7,16 @@ import { User } from "@/models/User";
 
 @injectable()
 export class UserService implements IUserService {
+
+    async getAllUsers(): Promise<User[]> {
+        const promise = await fetch(URL("user", "getAllUsers"), {
+        headers: authHeader(),
+        credentials: "same-origin",
+        method: "GET"
+        });
+        return (await promise.json()) as User[];
+    }
+
     async getUserPermissions(): Promise<Access[]> {
         const promise = await fetch(URL("user", "getPermisions"), {
             headers: authHeader(),

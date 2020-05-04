@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-app-bar app clipped-left color="red">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title thin display-3>Flay</v-toolbar-title>
+      <v-app-bar-nav-icon center @click.stop="drawer = !drawer" />
+      <v-toolbar-title dark thin display-3>Flay</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-btn @click="logout">
