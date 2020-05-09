@@ -17,7 +17,7 @@
       :search="this.search"
     ></v-data-table>
 
-    <v-btn fab right bottom fixed color="primary">
+    <v-btn fab right bottom fixed to="new" color="primary">
       <v-icon>mdi-plus</v-icon>
     </v-btn>
   </v-container>
@@ -29,7 +29,7 @@ import { User } from "@/models/User";
 import { IUserService } from "@/interfaces/IUserService";
 
 @Component
-export default class Users extends Vue {
+export default class List extends Vue {
   @Inject("Users") private userService!: IUserService;
 
   users!: User[];

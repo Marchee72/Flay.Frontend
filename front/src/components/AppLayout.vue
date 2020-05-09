@@ -13,11 +13,10 @@
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
         <v-list-item two-line to="/profile">
-          <v-list-item-avatar  color="orange">
+          <v-list-item-avatar color="orange">
             <v-img v-if="image" :src="image" />
             <span v-else class="white--text headline">{{this.avatar}}</span>
           </v-list-item-avatar>
-        
           <v-list-item-content>
             <v-list-item-title
               >{{ user.name }} {{ user.lastname }}</v-list-item-title
@@ -89,7 +88,7 @@ export default class appLayout extends Vue {
   }
 
   logout() {
-    localStorage.clear();
+    localStorage.removeItem("user");
     router.push({ name: "home" });
   }
 
