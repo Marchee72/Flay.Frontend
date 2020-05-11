@@ -74,7 +74,7 @@ export default class Login extends Vue {
   badLogin!: boolean;
   constructor() {
     super();
-    if(!this.$vuetify.theme.dark) this.$vuetify.theme.dark = true;
+    if (!this.$vuetify.theme.dark) this.$vuetify.theme.dark = true;
 
     this.user = "";
     this.pass = "";

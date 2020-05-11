@@ -1,11 +1,11 @@
 <template>
   <v-app app root>
-    <appLayout/>
+    <appLayout />
 
     <router-view></router-view>
 
     <v-footer app>
-      <span>&copy; {{this.year}}</span>
+      <span>&copy; {{ this.year }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -16,7 +16,7 @@ import appLayout from "../components/appLayout.vue";
 
 @Component({ components: { appLayout } })
 export default class Template extends Vue {
- const year = new Date().getFullYear();
+  year = new Date().getFullYear();
 }
 </script>
 
