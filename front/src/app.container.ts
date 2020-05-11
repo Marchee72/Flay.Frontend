@@ -8,8 +8,7 @@ import { IBuildingService } from "./interfaces/IBuildingService";
 import { BuildingService } from "./services/BuildingService";
 
 export function containerBuilder() {
-    container.addTransient<IAuthService>(AuthService, "Authentication");
-    container.addTransient<IUserService>(UserService, "Users");
-    container.addTransient<IBuildingService>(BuildingService, "Buildings");
-
+  container.addTransient<IAuthService>(AuthService, "Authentication");
+  container.addTransient<IUserService>(UserService, "Users");
+  container.addTransient<IBuildingService>(BuildingService, "Buildings");
 }

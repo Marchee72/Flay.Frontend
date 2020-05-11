@@ -5,13 +5,15 @@
       height="200px"
       :src="this.img"
     > -->
-      <v-card-title>{{this.buildingname}}</v-card-title>
+    <v-card-title>{{ this.buildingname }}</v-card-title>
     <!-- </v-img> -->
 
-    <v-card-subtitle class="pb-0">{{this.streetname || " " || this.streetnumber }}</v-card-subtitle>
+    <v-card-subtitle class="pb-0">{{
+      this.streetname || " " || this.streetnumber
+    }}</v-card-subtitle>
 
     <v-card-text class="text--primary">
-      <div>{{this.floors}}</div>
+      <div>{{ this.floors }}</div>
     </v-card-text>
 
     <v-card-actions>
@@ -33,8 +35,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { Inject } from "inversify-props";
 
 @Component
-export default class BuildingCard extends Vue {
-
+export default class buildingCard extends Vue {
   @Prop() id!: string;
   @Prop() buildingname!: string;
   @Prop() streetname!: string;
