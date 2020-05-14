@@ -15,7 +15,7 @@
         <v-list-item two-line to="/profile">
           <v-list-item-avatar color="orange">
             <v-img v-if="image" :src="image" />
-            <span v-else class="white--text headline">{{this.avatar}}</span>
+            <span v-else class="white--text headline">{{ this.avatar }}</span>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title

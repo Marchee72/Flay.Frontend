@@ -16,19 +16,17 @@
       :items="this.users"
       :search="this.search"
     ></v-data-table>
-
-    <v-btn fab right bottom fixed to="new" color="primary">
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
+    <newUserForm />
   </v-container>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Inject } from "inversify-props";
 import { User } from "@/models/User";
+import newUserForm from "@/components/newUserForm";
 import { IUserService } from "@/interfaces/IUserService";
 
-@Component
+@Component({ components: { newUserForm } })
 export default class List extends Vue {
   @Inject("Users") private userService!: IUserService;
 
