@@ -6,7 +6,6 @@ import Template from "../views/Template.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Profile from "../views/Profile.vue";
 import List from "../views/user/List.vue";
-import Data from "../views/user/Data.vue";
 
 import passThrough from "../components/passThrough.vue";
 
@@ -29,8 +28,7 @@ const routes = [
         component: passThrough,
         children: [
           { path: "", redirect: { name: "list" } },
-          { path: "list", name: "list", component: List },
-          { path: "new", name: "new", component: Data }
+          { path: "list", name: "list", component: List }
         ]
       }
     ]
