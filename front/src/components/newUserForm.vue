@@ -16,20 +16,32 @@
               <v-col cols="12" sm="12" md="12">
                 <v-text-field
                   label="Nombre"
-                  :v-model="user.name"
+                  v-model="name"
                   outlined
+                  dense
                 ></v-text-field>
                 <v-text-field
                   label="Apellido"
-                  :v-model="user.lastname"
+                  v-model="lastname"
                   outlined
+                  dense
                 ></v-text-field>
                 <v-text-field
                   label="E-mail"
-                  :v-model="user.email"
+                  v-model="email"
                   outlined
+                  dense
                 ></v-text-field>
-                <v-select v-model="value" :items="items" label="Tipo" outlined>
+                <v-select
+                  v-model="role"
+                  :items="roles"
+                  return-object
+                  item-text="name"
+                  item-value="id"
+                  label="Tipo"
+                  outlined
+                  dense
+                >
                 </v-select>
               </v-col>
             </v-form>
@@ -41,7 +53,7 @@
             Cancelar
           </v-btn>
 
-          <v-btn color="red darken-1" text @click="dialog = false">
+          <v-btn color="red darken-1" text @click="this.save">
             Guardar
           </v-btn>
         </v-card-actions>
@@ -54,27 +66,38 @@ import { Component, Vue } from "vue-property-decorator";
 import { IUserService } from "@/interfaces/IUserService";
 import { Inject } from "inversify-props";
 import { User } from "@/models/User";
+import { Role } from "@/models/Role";
 
 @Component
 export default class newUSerForm extends Vue {
   @Inject("Users") private userService!: IUserService;
   items!: { text: string; value: string }[];
-  user: User;
+  roles!: Role[];
+  name!: string;
+  lastname!: string;
+  email!: string;
+  role!: Role;
   dialog!: boolean;
+
   constructor() {
     super();
     this.items = [];
     this.dialog = false;
-    this.user = new User();
+    this.role = new Role();
+    this.name = this.lastname = this.email = "";
   }
   async created() {
-    var roles = await this.userService.getAllRoles();
-    this.items = roles.map(role => {
-      return {
-        text: role.name,
-        value: role.name
-      };
-    });
+    this.roles = await this.userService.getAllRoles();
+  }
+  save() {
+    var user = new User(
+      this.name,
+      this.lastname,
+      this.email,
+      this.roles.find(_ => _.id === this.role.id)!
+    );
+    this.userService.saveUser(user);
+    this.dialog = false;
   }
 }
 </script>

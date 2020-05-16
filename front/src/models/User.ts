@@ -8,4 +8,11 @@ export class User {
   email!: string;
   role!: Role;
   token!: string;
+
+  constructor(name: string, lastname: string, email: string, role: Role) {
+    this.name = name;
+    this.lastname = lastname;
+    this.email = email;
+    this.role = role;
+  }
 }

@@ -69,4 +69,13 @@ export class UserService implements IUserService {
     });
     return (await promise.json()) as Role[];
   }
+
+  saveUser(user: User) {
+    fetch(URL("user", "save"), {
+      headers: authHeader(),
+      credentials: "same-origin",
+      method: "POST",
+      body: JSON.stringify(user)
+    });
+  }
 }

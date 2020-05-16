@@ -3,6 +3,7 @@ import { User } from "@/models/User";
 import { Role } from "@/models/Role";
 
 export interface IUserService {
+  saveUser(user: User): void;
   getUserPermissions(): Promise<Access[]>;
   updateProfilePicture(img: string): void;
   getProfilePicture(): Promise<string>;
