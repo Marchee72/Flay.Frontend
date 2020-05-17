@@ -18,19 +18,25 @@
                   label="Nombre"
                   v-model="name"
                   outlined
-                  dense
+                  :rules="[v => !!v || 'El nombre es requerido.']"
+                  required
                 ></v-text-field>
                 <v-text-field
                   label="Apellido"
                   v-model="lastname"
                   outlined
-                  dense
+                  :rules="[v => !!v || 'El apellido es requerido.']"
+                  required
                 ></v-text-field>
                 <v-text-field
                   label="E-mail"
                   v-model="email"
                   outlined
-                  dense
+                  :rules="[
+                    v => !!v || 'El e-mail es requerido.',
+                    v => /.+@.+\..+/.test(v) || 'El e-mail debe ser valido.'
+                  ]"
+                  required
                 ></v-text-field>
                 <v-select
                   v-model="role"
@@ -40,7 +46,8 @@
                   item-value="id"
                   label="Tipo"
                   outlined
-                  dense
+                  :rules="[v => !!v || 'El rol es requerido.']"
+                  required
                 >
                 </v-select>
               </v-col>
