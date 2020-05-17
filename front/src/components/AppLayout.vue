@@ -42,6 +42,7 @@
         </v-list-item>
       </v-list>
       <template v-slot:append>
+        <v-divider></v-divider>
         <div class="pa-2">
           <v-switch
             v-model="$vuetify.theme.dark"
@@ -61,6 +62,7 @@ import router from "../router";
 import { Access } from "@/models/Access";
 import { IUserService } from "@/interfaces/IUserService";
 import { Inject } from "inversify-props";
+import { User } from "@/models/User";
 
 @Component
 export default class appLayout extends Vue {

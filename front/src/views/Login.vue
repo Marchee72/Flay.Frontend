@@ -22,25 +22,27 @@
                     <v-text-field
                       label="Username"
                       name="username"
-                      :rules="[v => !!v || 'Username is required']"
+                      :rules="[v => !!v || 'El usuario es requerido.']"
                       :error="badLogin"
                       @keyup.enter="login"
                       prepend-icon="person"
                       type="text"
                       v-model="user"
+                      :loading="loading"
                       required
                     />
 
                     <v-text-field
                       id="password"
-                      label="Password"
+                      label="Contraseña"
                       name="password"
-                      :rules="[v => !!v || 'Password is required']"
+                      :rules="[v => !!v || 'La contraseña es requerida.']"
                       :error="badLogin"
                       @keyup.enter="login"
                       prepend-icon="lock"
                       type="password"
                       v-model="pass"
+                      :loading="loading"
                       required
                     />
                   </v-form>
@@ -72,6 +74,7 @@ export default class Login extends Vue {
   valid!: boolean;
   error!: string;
   badLogin!: boolean;
+  loading!: boolean
   constructor() {
     super();
     if (!this.$vuetify.theme.dark) this.$vuetify.theme.dark = true;
@@ -80,11 +83,12 @@ export default class Login extends Vue {
     this.pass = "";
     this.error = "";
     this.valid = true;
-    this.badLogin = false;
+    this.badLogin = this.loading = false;
   }
 
   async login() {
     this.badLogin = false;
+    this.loading = true;
     this.$refs.form.validate();
     if (this.valid)
       var user = await this.authenticationService.authenticate(
@@ -98,7 +102,8 @@ export default class Login extends Vue {
     }
     this.$refs.form.resetValidation();
     this.badLogin = true;
-    this.error = "User or password invalid";
+    this.loading = false;
+    this.error = "Usuario o contraseña incorrecta.";
   }
 }
 </script>
