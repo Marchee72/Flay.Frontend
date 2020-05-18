@@ -3,7 +3,8 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Template from "../views/Template.vue";
-import Dashboard from "../views/Dashboard.vue";
+import BuildingList from "../views/building/BuildingList.vue";
+import BuildingNew from "../views/building/BuildingNew.vue";
 import Profile from "../views/Profile.vue";
 import List from "../views/user/List.vue";
 import Data from "../views/user/Data.vue";
@@ -21,7 +22,25 @@ const routes = [
     name: "flay",
     component: Template,
     children: [
-      { path: "/dashboard", name: "dashboard", component: Dashboard },
+      // { path: "/buildings", 
+      //   name: "buildings", 
+      //   component: BuildingList,
+      //   children: [
+      //     { path: "new", name: "new", component: BuildingNew }
+      //   ]
+      // },
+      // { path: "/buildings", name: "buildings", component: BuildingList },
+      // { path: "/buildings/new", name: "/buildings/new", component: BuildingNew },
+      {
+        path: "/buildings",
+        name: "buildings",
+        component: passThrough,
+        children: [
+          { path: "", redirect: { name: "buildingList" } },
+          { path: "list", name: "buildingList", component: BuildingList },
+          { path: "new", name: "buildingNew", component: BuildingNew }
+        ]
+      },
       { path: "/profile", name: "profile", component: Profile },
       {
         path: "/user",

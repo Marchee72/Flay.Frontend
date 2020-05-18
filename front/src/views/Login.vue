@@ -94,7 +94,7 @@ export default class Login extends Vue {
     if (user.username && user.token) {
       localStorage.setItem("user", JSON.stringify(user));
       console.log("Welcome " + user.username);
-      router.push({ name: "dashboard" });
+      router.push({ name: "user" });
     }
     this.$refs.form.resetValidation();
     this.badLogin = true;

@@ -9,11 +9,11 @@
     <!-- </v-img> -->
 
     <v-card-subtitle class="pb-0">{{
-      this.streetname || " " || this.streetnumber
+      this.streetname + " " + this.streetnumber
     }}</v-card-subtitle>
 
     <v-card-text class="text--primary">
-      <div>{{ this.floors }}</div>
+      <div>Cantidad de pisos: {{ this.floors }}</div>
     </v-card-text>
 
     <v-card-actions>
