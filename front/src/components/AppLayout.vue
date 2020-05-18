@@ -15,7 +15,7 @@
         <v-list-item two-line to="/profile">
           <v-list-item-avatar color="orange">
             <v-img v-if="image" :src="image" />
-            <span v-else class="white--text headline">{{this.avatar}}</span>
+            <span v-else class="white--text headline">{{ this.avatar }}</span>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title
@@ -42,6 +42,7 @@
         </v-list-item>
       </v-list>
       <template v-slot:append>
+        <v-divider></v-divider>
         <div class="pa-2">
           <v-switch
             v-model="$vuetify.theme.dark"
@@ -62,6 +63,7 @@ import { Access } from "@/models/Access";
 import { User } from "@/models/User";
 import { IUserService } from "@/interfaces/IUserService";
 import { Inject } from "inversify-props";
+import { User } from "@/models/User";
 
 @Component
 export default class appLayout extends Vue {
