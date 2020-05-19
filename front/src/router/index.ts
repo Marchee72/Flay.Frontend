@@ -21,15 +21,6 @@ const routes = [
     name: "flay",
     component: Template,
     children: [
-      // { path: "/buildings", 
-      //   name: "buildings", 
-      //   component: BuildingList,
-      //   children: [
-      //     { path: "new", name: "new", component: BuildingNew }
-      //   ]
-      // },
-      // { path: "/buildings", name: "buildings", component: BuildingList },
-      // { path: "/buildings/new", name: "/buildings/new", component: BuildingNew },
       {
         path: "/buildings",
         name: "buildings",
@@ -46,8 +37,8 @@ const routes = [
         name: "user",
         component: passThrough,
         children: [
-          { path: "", redirect: { name: "list" } },
-          { path: "list", name: "list", component: List }
+          { path: "", redirect: { name: "userList" } },
+          { path: "list", name: "userList", component: List }
         ]
       }
     ]

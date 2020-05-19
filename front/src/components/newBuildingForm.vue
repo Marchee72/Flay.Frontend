@@ -35,14 +35,14 @@
                   :rules="[v => !!v || 'El numero es requerido.']"
                   required
                 ></v-text-field>
-                  <v-text-field
+                <v-text-field
                   label="Dptos"
                   v-model="floors"
                   outlined
                   :rules="[v => !!v || 'Cant de dptos es requerida.']"
                   required
                 ></v-text-field>
-                 </v-col>
+              </v-col>
             </v-form>
           </v-container>
         </v-card-text>
@@ -61,7 +61,6 @@
   </v-row>
 </template>
 <script lang="ts">
-
 import { Component, Vue } from "vue-property-decorator";
 import { IBuildingService } from "@/interfaces/IBuildingService";
 import { Inject } from "inversify-props";
@@ -86,8 +85,8 @@ export default class newBuildingForm extends Vue {
       this.buildingName,
       this.streetName,
       this.streetNumber,
-      this.floors,
-   );
+      this.floors
+    );
     this.buildingService.saveBuilding(building);
     this.dialog = false;
   }
