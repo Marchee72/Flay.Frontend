@@ -13,9 +13,7 @@
         <p v-if="i.administrator"> {{i.administrator.name}}</p>
         </v-col>
       </v-row>
-    <v-btn fab right bottom fixed to="buildings/new" color="primary">
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
+      <newBuildingForm />
     </v-container>
   </section>
 </template>
@@ -29,20 +27,24 @@ import buildingCard from "../../components/buildingCard.vue";
 import { IBuildingService } from "@/interfaces/IBuildingService";
 import { Building } from "@/models/Building";
 import { Inject } from "inversify-props";
+import newBuildingForm from "@/components/newBuildingForm";
 
 
-@Component({ components: { buildingCard } })
+@Component({ components: { buildingCard , newBuildingForm} })
 export default class BuildingList extends Vue {  
 
   @Inject("Buildings") private buildingservice!: IBuildingService;
   // @Inject("Users") private userService!: IUserService;
 
   buildings!: Building[];
+  fab!: boolean;
   // user!: User;
 
   constructor() {
     super();
     this.buildings = [];
+    this.fab = false;
+    
 
     // this.user = JSON.parse(localStorage.getItem("user"));
   }

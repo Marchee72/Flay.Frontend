@@ -15,14 +15,6 @@ export class BuildingService implements IBuildingService {
     });
     return (await promise.json()) as Building[];
   }
-    // async getAllBuildingsByUser(userId: string): Promise<Building[]> {
-    //   const promise = await fetch(URL("building", "getAllByUser"), {
-    //     headers: authHeader(),
-    //     credentials: "same-origin",
-    //     method: "GET"
-    //   });
-    //   return (await promise.json()) as Building[];
-    // }
 
   async getBuildingInformation(): Promise<Building> {
     const promise = await fetch(URL("building", "getBuilding"), {
@@ -32,4 +24,12 @@ export class BuildingService implements IBuildingService {
     });
     return (await promise.json()) as Building;
   }
+  saveBuilding(building: Building) {
+    fetch(URL("building", "save"), {
+      headers: authHeader(),
+      credentials: "same-origin",
+      method: "POST",
+      body: JSON.stringify(building)
+    });
+}
 }

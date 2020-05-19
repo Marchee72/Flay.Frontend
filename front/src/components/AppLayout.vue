@@ -63,7 +63,7 @@ import { Access } from "@/models/Access";
 import { User } from "@/models/User";
 import { IUserService } from "@/interfaces/IUserService";
 import { Inject } from "inversify-props";
-import { User } from "@/models/User";
+
 
 @Component
 export default class appLayout extends Vue {
