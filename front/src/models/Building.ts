@@ -8,7 +8,12 @@ export class Building {
   floors!: number;
   administrator!: User;
 
-  constructor(buildingName: string, streetName: string, streetNumber: string,floors: number) {
+  constructor(
+    buildingName: string,
+    streetName: string,
+    streetNumber: string,
+    floors: number
+  ) {
     this.buildingName = buildingName;
     this.streetName = streetName;
     this.streetNumber = streetNumber;
