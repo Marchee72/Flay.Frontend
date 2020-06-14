@@ -1,6 +1,7 @@
 import { Access } from "@/models/Access";
 import { User } from "@/models/User";
 import { Role } from "@/models/Role";
+import { UserLw } from "@/models/lw/UserLw";
 
 export interface IUserService {
   saveUser(user: User): void;
@@ -11,4 +12,5 @@ export interface IUserService {
   getUserInformation(): Promise<User>;
   getAllUsers(): Promise<User[]>;
   getAllRoles(): Promise<Role[]>;
+  getAdmins(): Promise<UserLw[]>;
 }

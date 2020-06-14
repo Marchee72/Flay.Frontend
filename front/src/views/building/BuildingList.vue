@@ -2,18 +2,18 @@
   <section>
     <v-container fluid>
       <v-row dense>
-        <v-col v-for="i in buildings" :key="i" :cols="2" >
-          <buildingCard
-            :buildingname= i.buildingName 
-            :streetname= i.streetName 
-            :streetnumber= i.streetNumber 
-            :id= i 
-            :floors= i.floors
-          />
-        <p v-if="i.administrator"> {{i.administrator.name}}</p>
+        <v-col v-for="i in buildings" :key="i" :cols="2">
+          <p v-if="i.administrator">{{ i.administrator.name }}</p>
         </v-col>
       </v-row>
-      <newBuildingForm />
+      <!-- <v-dialog v-model="dialog" persistent max-width="400px">
+        <template v-slot:activator="{ on }">
+          <v-btn color="primary" dark v-on="on" right bottom fixed>
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </template> -->
+      <newBuildingForm :show="show" />
+      <!-- </v-dialog> -->
     </v-container>
   </section>
 </template>
@@ -27,30 +27,25 @@ import buildingCard from "../../components/buildingCard.vue";
 import { IBuildingService } from "@/interfaces/IBuildingService";
 import { Building } from "@/models/Building";
 import { Inject } from "inversify-props";
-import newBuildingForm from "@/components/newBuildingForm";
+import newBuildingForm from "@/components/newBuildingForm.vue";
 
-
-@Component({ components: { buildingCard , newBuildingForm} })
-export default class BuildingList extends Vue {  
-
+@Component({ components: { buildingCard, newBuildingForm } })
+export default class BuildingList extends Vue {
   @Inject("Buildings") private buildingservice!: IBuildingService;
-  // @Inject("Users") private userService!: IUserService;
 
   buildings!: Building[];
   fab!: boolean;
-  // user!: User;
+  show!: boolean;
 
   constructor() {
     super();
     this.buildings = [];
     this.fab = false;
-    
-
-    // this.user = JSON.parse(localStorage.getItem("user"));
+    this.show = false;
   }
-  	async created() {
-		this.buildings = await this.buildingservice.getAllBuildings();
-		console.log(this.buildings);
+  async created() {
+    this.buildings = await this.buildingservice.getAllBuildings();
+    console.log(this.buildings);
   }
 }
 </script>

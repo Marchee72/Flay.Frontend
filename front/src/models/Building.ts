@@ -1,22 +1,28 @@
 import { User } from "./User";
+import { UserLw } from "./lw/UserLw";
 
 export class Building {
   id!: string;
   buildingName!: string;
   streetName!: string;
-  streetNumber!: string;
+  streetNumber!: number;
+  bis!: boolean;
   floors!: number;
-  administrator!: User;
+  administrator!: UserLw;
 
   constructor(
     buildingName: string,
     streetName: string,
-    streetNumber: string,
-    floors: number
+    streetNumber: number,
+    bis: boolean,
+    floors: number,
+    administrator: UserLw
   ) {
     this.buildingName = buildingName;
     this.streetName = streetName;
     this.streetNumber = streetNumber;
-    this.floors = floors;
+    this.bis = bis;
+    //this.floors = floors;
+    this.administrator = administrator;
   }
 }

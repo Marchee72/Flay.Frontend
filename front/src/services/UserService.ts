@@ -5,6 +5,7 @@ import { URL } from "@/helpers/http-helpers";
 import { IUserService } from "@/interfaces/IUserService";
 import { User } from "@/models/User";
 import { Role } from "@/models/Role";
+import { UserLw } from "@/models/lw/UserLw";
 
 @injectable()
 export class UserService implements IUserService {
@@ -77,5 +78,13 @@ export class UserService implements IUserService {
       method: "POST",
       body: JSON.stringify(user)
     });
+  }
+  async getAdmins(): Promise<UserLw[]>{
+    var promise = await fetch(URL("user", "getAdministrators"), {
+      headers: authHeader(),
+      credentials: "same-origin",
+      method: "GET"
+    });
+    return (await promise.json()) as UserLw[];
   }
 }

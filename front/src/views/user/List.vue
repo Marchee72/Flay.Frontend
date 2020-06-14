@@ -23,7 +23,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Inject } from "inversify-props";
 import { User } from "@/models/User";
-import newUserForm from "@/components/newUserForm";
+import newUserForm from "@/components/newUserForm.vue";
 import { IUserService } from "@/interfaces/IUserService";
 
 @Component({ components: { newUserForm } })

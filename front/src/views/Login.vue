@@ -9,7 +9,7 @@
         >
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="4">
-              <v-card class="elevation-12">
+              <v-card class="elevation-12" :loading="loading">
                 <v-toolbar color="red" dark flat>
                   <v-toolbar-title>Login</v-toolbar-title>
                   <v-spacer />
@@ -28,7 +28,6 @@
                       prepend-icon="person"
                       type="text"
                       v-model="user"
-                      :loading="loading"
                       required
                     />
 
@@ -42,7 +41,6 @@
                       prepend-icon="lock"
                       type="password"
                       v-model="pass"
-                      :loading="loading"
                       required
                     />
                   </v-form>
