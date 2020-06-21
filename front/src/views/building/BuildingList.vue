@@ -12,7 +12,7 @@
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </template> -->
-      <newBuildingForm :show="show" />
+      <newFormTest :show="show" />
       <!-- </v-dialog> -->
     </v-container>
   </section>
@@ -28,8 +28,10 @@ import { IBuildingService } from "@/interfaces/IBuildingService";
 import { Building } from "@/models/Building";
 import { Inject } from "inversify-props";
 import newBuildingForm from "@/components/newBuildingForm.vue";
+import newFormTest from "@/components/newFormTest.vue";
 
-@Component({ components: { buildingCard, newBuildingForm } })
+
+@Component({ components: { buildingCard, newBuildingForm, newFormTest } })
 export default class BuildingList extends Vue {
   @Inject("Buildings") private buildingservice!: IBuildingService;
 
@@ -46,6 +48,10 @@ export default class BuildingList extends Vue {
   async created() {
     this.buildings = await this.buildingservice.getAllBuildings();
     console.log(this.buildings);
+  }
+
+  sayHello(): string {
+    return "Hello!";
   }
 }
 </script>
