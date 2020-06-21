@@ -7,6 +7,7 @@ import BuildingList from "../views/building/BuildingList.vue";
 import BuildingNew from "../views/building/BuildingNew.vue";
 import Profile from "../views/Profile.vue";
 import List from "../views/user/List.vue";
+import Error404 from "../views/errors/404.vue";
 
 import passThrough from "../components/passThrough.vue";
 
@@ -48,7 +49,9 @@ const routes = [
     name: "about",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+  },
+  //Siempre a lo ultimo
+  { path: "*", component: Error404 }
 ];
 
 const router = new VueRouter({
