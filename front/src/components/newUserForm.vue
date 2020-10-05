@@ -70,13 +70,13 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { IUserService } from "@/interfaces/IUserService";
+import { IUserService } from "../interfaces/IUserService";
 import { Inject } from "inversify-props";
-import { User } from "@/models/User";
-import { Role } from "@/models/Role";
+import { User } from "../models/User";
+import { Role } from "../models/Role";
 
 @Component
-export default class newUSerForm extends Vue {
+export default class NewUSerForm extends Vue {
   @Inject("Users") private userService!: IUserService;
   items!: { text: string; value: string }[];
   roles!: Role[];

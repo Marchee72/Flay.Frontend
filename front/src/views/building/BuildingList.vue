@@ -6,12 +6,6 @@
           <p v-if="i.administrator">{{ i.administrator.name }}</p>
         </v-col>
       </v-row>
-      <!-- <v-dialog v-model="dialog" persistent max-width="400px">
-        <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on" right bottom fixed>
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-        </template> -->
       <newFormTest :show="show" />
       <!-- </v-dialog> -->
     </v-container>
@@ -20,18 +14,17 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { IAuthService } from "@/interfaces/IAuthService";
-import { IUserService } from "@/interfaces/IUserService";
-import { User } from "@/models/User";
-import buildingCard from "../../components/buildingCard.vue";
-import { IBuildingService } from "@/interfaces/IBuildingService";
-import { Building } from "@/models/Building";
+import { IAuthService } from "../../interfaces/IAuthService";
+import { IUserService } from "../../interfaces/IUserService";
+import { User } from "../../models/User";
+import BuildingCard from "../components/BuildingCard.vue";
+import { IBuildingService } from "../../interfaces/IBuildingService";
+import { Building } from "../../models/Building";
 import { Inject } from "inversify-props";
-import newBuildingForm from "@/components/newBuildingForm.vue";
-import newFormTest from "@/components/newFormTest.vue";
+import NewBuildingForm from "../components/newBuildingForm.vue";
+import NewFormTest from "../components/newFormTest.vue";
 
-
-@Component({ components: { buildingCard, newBuildingForm, newFormTest } })
+@Component({ components: { BuildingCard, NewBuildingForm, NewFormTest } })
 export default class BuildingList extends Vue {
   @Inject("Buildings") private buildingservice!: IBuildingService;
 

@@ -9,7 +9,7 @@ import Profile from "../views/Profile.vue";
 import List from "../views/user/List.vue";
 import Error404 from "../views/errors/404.vue";
 
-import passThrough from "../components/passThrough.vue";
+import PassThrough from "../components/passThrough.vue";
 
 Vue.use(VueRouter);
 
@@ -25,7 +25,7 @@ const routes = [
       {
         path: "/buildings",
         name: "buildings",
-        component: passThrough,
+        component: PassThrough,
         children: [
           { path: "", redirect: { name: "buildingList" } },
           { path: "list", name: "buildingList", component: BuildingList },
@@ -36,7 +36,7 @@ const routes = [
       {
         path: "/user",
         name: "user",
-        component: passThrough,
+        component: PassThrough,
         children: [
           { path: "", redirect: { name: "userList" } },
           { path: "list", name: "userList", component: List }

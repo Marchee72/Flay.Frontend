@@ -85,12 +85,12 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { Inject } from "inversify-props";
 import { IUserService } from "../interfaces/IUserService";
-import { UserLw } from "@/models/lw/UserLw";
-import { IBuildingService } from "@/interfaces/IBuildingService";
-import { Building } from "@/models/Building";
+import { UserLw } from "../models/lw/UserLw";
+import { IBuildingService } from "../interfaces/IBuildingService";
+import { Building } from "../models/Building";
 
 @Component
-export default class newBuildingForm extends Vue {
+export default class NewBuildingForm extends Vue {
   @Inject("Users") private userService!: IUserService;
   @Inject("Buildings") private buildingservice!: IBuildingService;
 

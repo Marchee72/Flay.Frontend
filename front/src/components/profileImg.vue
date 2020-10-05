@@ -34,10 +34,10 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { generateRandomColor } from "@/helpers/img-helpers";
+import { generateRandomColor } from "../helpers/img-helpers";
 
 @Component
-export default class profileImg extends Vue {
+export default class ProfileImg extends Vue {
   @Prop() src!: string;
   @Prop() initials!: string;
   color!: string;

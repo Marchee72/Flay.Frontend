@@ -8,7 +8,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class passThrough extends Vue {
+export default class PassThrough extends Vue {
   constructor() {
     super();
   }

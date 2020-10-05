@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { IAuthService } from "@/interfaces/IAuthService";
+import { IAuthService } from "../interfaces/IAuthService";
 import { Inject } from "inversify-props";
 import router from "../router";
 
@@ -72,7 +72,7 @@ export default class Login extends Vue {
   valid!: boolean;
   error!: string;
   badLogin!: boolean;
-  loading!: boolean
+  loading!: boolean;
   constructor() {
     super();
     if (!this.$vuetify.theme.dark) this.$vuetify.theme.dark = true;

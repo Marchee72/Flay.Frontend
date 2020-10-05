@@ -11,10 +11,10 @@
             />
             <v-file-input
               :rules="[
-                (value) =>
+                value =>
                   !value ||
                   value.size < 2000000 ||
-                  'Avatar size should be less than 2 MB!',
+                  'Avatar size should be less than 2 MB!'
               ]"
               accept="image/png, image/jpeg, image/bmp"
               placeholder="Pick an avatar"
@@ -35,7 +35,8 @@
         </v-row>
         <v-btn-toggle v-model="toggle_exclusive" rounded>
           <v-btn color="primary" @click="save">Save </v-btn>
-          <v-btn  color="default" @click="deletePicture"> Delete </v-btn>
+          <v-btn color="default" @click="deletePicture"> Delete </v-btn>
+          <v-btn color="default" @click="deletePicture"> Delete </v-btn>
         </v-btn-toggle>
       </v-form>
     </v-col>
@@ -44,13 +45,13 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import { IUserService } from "@/interfaces/IUserService";
+import { IUserService } from "../interfaces/IUserService";
 import { Inject } from "inversify-props";
-import { toBase64, generateRandomColor } from "@/helpers/img-helpers";
+import { toBase64, generateRandomColor } from "../helpers/img-helpers";
 import { User } from "../models/User";
-import profileImg from "@/components/profileImg.vue";
+import ProfileImg from "../components/ProfileImg.vue";
 
-@Component({ components: { profileImg } })
+@Component({ components: { ProfileImg } })
 export default class Profile extends Vue {
   @Inject("Users") private userService!: IUserService;
 

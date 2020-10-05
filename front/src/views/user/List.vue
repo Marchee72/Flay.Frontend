@@ -16,17 +16,17 @@
       :items="this.users"
       :search="this.search"
     ></v-data-table>
-    <newUserForm />
+    <NewUserForm />
   </v-container>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Inject } from "inversify-props";
-import { User } from "@/models/User";
-import newUserForm from "@/components/newUserForm.vue";
-import { IUserService } from "@/interfaces/IUserService";
+import { User } from "../../models/User";
+import NewUserForm from "@/components/newUserForm.vue";
+import { IUserService } from "../../interfaces/IUserService";
 
-@Component({ components: { newUserForm } })
+@Component({ components: { NewUserForm } })
 export default class List extends Vue {
   @Inject("Users") private userService!: IUserService;
 

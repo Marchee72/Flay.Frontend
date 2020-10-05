@@ -59,14 +59,13 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import router from "../router";
-import { Access } from "@/models/Access";
-import { User } from "@/models/User";
-import { IUserService } from "@/interfaces/IUserService";
+import { Access } from "../models/Access";
+import { User } from "../models/User";
+import { IUserService } from "../interfaces/IUserService";
 import { Inject } from "inversify-props";
 
-
 @Component
-export default class appLayout extends Vue {
+export default class AppLayout extends Vue {
   @Inject("Users") private userService!: IUserService;
 
   drawer!: boolean;
@@ -96,7 +95,7 @@ export default class appLayout extends Vue {
   }
 
   applyTheme() {
-    var darkTheme = JSON.parse(localStorage.getItem("darkTheme"));
+    var darkTheme: boolean = JSON.parse(localStorage.getItem("darkTheme"));
     this.$vuetify.theme.dark = darkTheme;
   }
 

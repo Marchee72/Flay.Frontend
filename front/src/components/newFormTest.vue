@@ -3,7 +3,7 @@
     :valid="valid"
     :loading="loading"
     :validating="validating"
-    @getFormRef="getFormRef($event)"
+    ref="formBase"
   >
     <template v-slot:content>
       <v-text-field
@@ -19,7 +19,7 @@
         label="Calle"
         v-model="streetName"
         outlined
-        :rules="[v => !!v || 'La calle es requerido.']"
+        :rules="[v => !!v || 'La calle es requerida.']"
         required
       ></v-text-field>
       <v-row>
@@ -70,20 +70,20 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { Inject } from "inversify-props";
 import { IUserService } from "../interfaces/IUserService";
-import { UserLw } from "@/models/lw/UserLw";
-import { IBuildingService } from "@/interfaces/IBuildingService";
-import { Building } from "@/models/Building";
+import { UserLw } from "../models/lw/UserLw";
+import { IBuildingService } from "../interfaces/IBuildingService";
+import { Building } from "../models/Building";
 import newFormBase from "./newFormBase.vue";
 
 @Component
-export default class newBuildingTest extends newFormBase {
+export default class NewBuildingTest extends newFormBase {
   @Inject("Users") private userService!: IUserService;
   @Inject("Buildings") private buildingservice!: IBuildingService;
 
   @Prop({ default: false }) show: boolean = false;
   valid!: boolean;
   validating!: boolean;
-  form!: Vue;
+  formBase!: Vue | Element | Vue[] | Element[];
   //first step
   buildingName!: string;
   streetName!: string;
@@ -95,7 +95,7 @@ export default class newBuildingTest extends newFormBase {
 
   constructor() {
     super();
-    this.form = new Vue();
+    this.formBase = this.$refs.children;
     this.show = false;
     this.bis = false;
     this.valid = true;
@@ -108,12 +108,8 @@ export default class newBuildingTest extends newFormBase {
     this.admins = await this.userService.getAdmins();
   }
 
-  getFormRef(form: Vue) {
-    this.form = form;
-  }
-
   async save() {
-    this.form.validate();
+    this.formBase.validate();
     if (this.valid) {
       this.loading = true;
       await this.buildingservice.saveBuilding(

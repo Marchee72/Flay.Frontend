@@ -35,7 +35,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { Inject } from "inversify-props";
 
 @Component
-export default class buildingCard extends Vue {
+export default class BuildingCard extends Vue {
   @Prop() id!: string;
   @Prop() buildingname!: string;
   @Prop() streetname!: string;

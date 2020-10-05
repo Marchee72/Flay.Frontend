@@ -38,10 +38,10 @@
 <script lang="ts">
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 import { mixins } from "vue-class-component";
-import formMixin from "@/mixins/form-mixin";
+import formMixin from "../mixins/form-mixin";
 
 @Component
-export default class newFormBase extends Vue {
+export default class NewFormBase extends Vue {
   @Prop({ default: false }) loading: boolean;
   @Prop({ default: false }) show: boolean;
   @Prop({ default: false }) validating: boolean;
@@ -58,7 +58,7 @@ export default class newFormBase extends Vue {
     this.$refs.form.reset();
   }
 
-   validateForm() {
+  validateForm() {
     this.$refs.form.validate();
     return this.valid;
   }
