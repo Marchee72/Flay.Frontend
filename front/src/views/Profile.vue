@@ -33,11 +33,11 @@
           </v-col>
           <v-col cols="8"> </v-col>
         </v-row>
-        <v-btn-toggle v-model="toggle_exclusive" rounded>
+        <!-- <v-btn-toggle v-model="toggle_exclusive" rounded>
           <v-btn color="primary" @click="save">Save </v-btn>
           <v-btn color="default" @click="deletePicture"> Delete </v-btn>
           <v-btn color="default" @click="deletePicture"> Delete </v-btn>
-        </v-btn-toggle>
+        </v-btn-toggle> -->
       </v-form>
     </v-col>
   </v-container>
@@ -55,14 +55,13 @@ import ProfileImg from "../components/ProfileImg.vue";
 export default class Profile extends Vue {
   @Inject("Users") private userService!: IUserService;
 
-  picture!: File | null;
+  picture!: File;
   src!: string | null;
   user!: User | null;
   initials!: string;
 
   constructor() {
     super();
-    this.picture = null;
     this.src = null;
     this.user = null;
   }

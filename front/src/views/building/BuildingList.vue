@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row dense>
         <v-col v-for="i in buildings" :key="i" :cols="2">
-          <p v-if="i.administrator">{{ i.administrator.name }}</p>
+          <p v-if="i.administrator">{{ i.administrator.userName }}</p>
         </v-col>
       </v-row>
       <newFormTest :show="show" />

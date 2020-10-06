@@ -78,9 +78,9 @@ export default class AppLayout extends Vue {
     super();
     this.applyTheme();
     this.drawer = false;
-    this.image = null;
+    this.image = "";
     this.actionItems = [];
-    this.user = JSON.parse(localStorage.getItem("user"));
+    this.user = JSON.parse(localStorage.getItem("user")) as User;
     this.avatar = (this.user.name[0] + this.user.lastname[0]).toUpperCase();
   }
 

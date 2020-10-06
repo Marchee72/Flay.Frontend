@@ -32,5 +32,15 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class BuildingNew extends Vue {}
+export default class BuildingNew extends Vue {
+  valid!: boolean;
+  /**
+   *
+   */
+  constructor() {
+    super();
+    this.valid = true;
+  }
+
+}
 </script>
