@@ -80,7 +80,7 @@ export default class AppLayout extends Vue {
     this.drawer = false;
     this.image = "";
     this.actionItems = [];
-    this.user = JSON.parse(localStorage.getItem("user")) as User;
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.avatar = (this.user.name[0] + this.user.lastname[0]).toUpperCase();
   }
 

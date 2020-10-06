@@ -9,7 +9,7 @@ import Profile from "../views/Profile.vue";
 import List from "../views/user/List.vue";
 import Error404 from "../views/errors/404.vue";
 
-import PassThrough from "../components/passThrough.vue";
+import PassThrough from "../components/PassThrough.vue";
 
 Vue.use(VueRouter);
 

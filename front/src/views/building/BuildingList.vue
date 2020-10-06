@@ -6,7 +6,6 @@
           <p v-if="i.administrator">{{ i.administrator.userName }}</p>
         </v-col>
       </v-row>
-      <newFormTest :show="show" />
       <!-- </v-dialog> -->
     </v-container>
   </section>
@@ -17,14 +16,13 @@ import { Component, Vue } from "vue-property-decorator";
 import { IAuthService } from "../../interfaces/IAuthService";
 import { IUserService } from "../../interfaces/IUserService";
 import { User } from "../../models/User";
-import BuildingCard from "../components/BuildingCard.vue";
+import BuildingCard from "../../components/BuildingCard.vue";
 import { IBuildingService } from "../../interfaces/IBuildingService";
 import { Building } from "../../models/Building";
 import { Inject } from "inversify-props";
-import NewBuildingForm from "../components/newBuildingForm.vue";
-import NewFormTest from "../components/newFormTest.vue";
+import NewBuildingForm from "../../components/NewBuildingForm.vue";
 
-@Component({ components: { BuildingCard, NewBuildingForm, NewFormTest } })
+@Component({ components: { BuildingCard, NewBuildingForm } })
 export default class BuildingList extends Vue {
   @Inject("Buildings") private buildingservice!: IBuildingService;
 
