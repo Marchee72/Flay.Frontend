@@ -1,16 +1,6 @@
 <template>
   <div>
-    <v-app-bar app clipped-left color="red">
-      <v-app-bar-nav-icon center @click.stop="drawer = !drawer" />
-      <v-toolbar-title dark thin display-3>Flay</v-toolbar-title>
-      <v-spacer></v-spacer>
-
-      <v-btn @click="logout">
-        Logout
-      </v-btn>
-    </v-app-bar>
-
-    <v-navigation-drawer v-model="drawer" app clipped>
+    <v-navigation-drawer v-model="show" app clipped>
       <v-list dense>
         <v-list-item two-line to="/profile">
           <v-list-item-avatar color="orange">
@@ -57,18 +47,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
-import router from "../router";
-import { Access } from "../models/Access";
-import { User } from "../models/User";
-import { IUserService } from "../interfaces/IUserService";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import router from "../../router";
+import { Access } from "../../models/Access";
+import { User } from "../../models/User";
+import { IUserService } from "../../interfaces/IUserService";
 import { Inject } from "inversify-props";
 
 @Component
 export default class AppLayout extends Vue {
   @Inject("Users") private userService!: IUserService;
-
-  drawer!: boolean;
+  @Prop() drawer!: boolean;
+  show!: boolean;
   actionItems!: Access[];
   user!: User;
   image!: string;
@@ -77,7 +67,7 @@ export default class AppLayout extends Vue {
   constructor() {
     super();
     this.applyTheme();
-    this.drawer = false;
+    this.show = false;
     this.image = "";
     this.actionItems = [];
     this.user = JSON.parse(localStorage.getItem("user"));
@@ -102,6 +92,11 @@ export default class AppLayout extends Vue {
   @Watch("$vuetify.theme.dark")
   protected saveTheme() {
     localStorage.setItem("darkTheme", this.$vuetify.theme.dark);
+  }
+
+  @Watch("drawer")
+  updateDrawer() {
+    this.show = this.drawer;
   }
 }
 </script>

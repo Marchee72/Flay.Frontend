@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <v-content>
+    <v-main>
       <v-snackbar v-model="error" color="error" :top="top" :timeout="timeout">
         <v-row align="center">
           <v-col class="grow">
@@ -9,7 +9,7 @@
         </v-row>
       </v-snackbar>
       <router-view></router-view>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

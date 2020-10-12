@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-container class="fill-height" fluid>
-      <v-content>
+      <v-main>
         <v-parallax
           class="fill-height"
           src="../resources/img/monumento.jpg"
@@ -53,7 +53,7 @@
             </v-col>
           </v-row>
         </v-parallax>
-      </v-content>
+      </v-main>
     </v-container>
   </v-app>
 </template>

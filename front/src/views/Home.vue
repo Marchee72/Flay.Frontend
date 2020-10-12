@@ -6,7 +6,7 @@
       </v-btn>
       <v-toolbar-title>Flay</v-toolbar-title>
     </v-app-bar>
-    <v-content dark>
+    <v-main dark>
       <section>
         <v-parallax src="../resources/img/main-picture.jpg" height="500">
           <v-layout column align-center justify-center class="white--text">
@@ -181,7 +181,7 @@
           </v-layout>
         </v-container>
       </section>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
