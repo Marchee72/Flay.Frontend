@@ -19,18 +19,17 @@
 import { Vue, Component, Emit, Watch } from "vue-property-decorator";
 import router from "../../router";
 import { namespace } from "vuex-class";
-const masterpage = namespace("masterpage");
+const masterpage = namespace("Masterpage");
 
 @Component
 export default class AppBar extends Vue {
 	change!: boolean;
 	
-	@masterpage.Getter
+	@masterpage.State
 	loading!: boolean;
 	
 	constructor(){
 		super();
-		this.loading = false;
 	}
 
   logout() {

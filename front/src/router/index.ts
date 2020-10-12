@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Template from "../views/Template.vue";
 import PassThrough from "../components/PassThrough.vue";
 
 Vue.use(VueRouter);
@@ -12,7 +11,7 @@ const routes = [
   {
     path: "/flay",
     name: "flay",
-    component: Template,
+    component:() => import("../views/Template.vue"),
     children: [
       {
         path: "/buildings",

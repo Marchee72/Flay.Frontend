@@ -26,7 +26,7 @@ import { User } from "../../models/User";
 import NewUserForm from "@/components/NewUserForm.vue";
 import { IUserService } from "../../interfaces/IUserService";
 import { namespace } from "vuex-class";
-const masterpage = namespace("masterpage");
+const masterpage = namespace("Masterpage");
 
 @Component({ components: { NewUserForm } })
 export default class List extends Vue {
@@ -54,10 +54,10 @@ export default class List extends Vue {
   }
 
   async created() {
-    this.loading = true;
-    this.updateLoading(this.loading);
+    this.updateLoading(true);
     this.users = await this.userService.getAllUsers();
     console.log(this.users);
+    this.updateLoading(false);
   }
 
   @masterpage.Action
