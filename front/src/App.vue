@@ -1,6 +1,6 @@
 <template>
-  <v-app id="inspire">
-    <v-content fluid>
+  <v-app id="app">
+    <v-content>
       <v-snackbar v-model="error" color="error" :top="top" :timeout="timeout">
         <v-row align="center">
           <v-col class="grow">

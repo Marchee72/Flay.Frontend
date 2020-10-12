@@ -1,9 +1,11 @@
 <template>
   <v-app app root>
     <AppLayout />
-
-    <router-view></router-view>
-
+      <v-container fluid>
+        <v-card>
+          <router-view></router-view>
+        </v-card>
+      </v-container>
     <v-footer app>
       <span>&copy; {{ this.year }}</span>
     </v-footer>
