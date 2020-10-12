@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer v-model="show" app clipped>
+    <v-navigation-drawer v-model="show" app temporary>
       <v-list dense>
         <v-list-item two-line to="/profile">
           <v-list-item-avatar color="orange">
@@ -96,7 +96,7 @@ export default class AppLayout extends Vue {
 
   @Watch("drawer")
   updateDrawer() {
-    this.show = this.drawer;
+    this.show = !this.show;
   }
 }
 </script>

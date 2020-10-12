@@ -1,22 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
 import Template from "../views/Template.vue";
-import BuildingList from "../views/building/BuildingList.vue";
-import BuildingNew from "../views/building/BuildingNew.vue";
-import Profile from "../views/Profile.vue";
-import List from "../views/user/List.vue";
-import Error404 from "../views/errors/404.vue";
-
 import PassThrough from "../components/PassThrough.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   { path: "/", redirect: { name: "home" } },
-  { path: "/home", name: "home", component: Home },
-  { path: "/login", name: "login", component: Login },
+  { path: "/home", name: "home", component: () => import("../views/Home.vue") },
+  { path: "/login", name: "login", component: () => import("../views/Login.vue") },
   {
     path: "/flay",
     name: "flay",
@@ -28,18 +20,18 @@ const routes = [
         component: PassThrough,
         children: [
           { path: "", redirect: { name: "buildingList" } },
-          { path: "list", name: "buildingList", component: BuildingList },
-          { path: "new", name: "buildingNew", component: BuildingNew }
+          { path: "list", name: "buildingList", component: () => import("../views/building/BuildingList.vue") },
+          { path: "new", name: "buildingNew", component: () => import("../views/building/BuildingNew.vue") }
         ]
       },
-      { path: "/profile", name: "profile", component: Profile },
+      { path: "/profile", name: "profile", component: () => import("../views/Profile.vue") },
       {
         path: "/user",
         name: "user",
         component: PassThrough,
         children: [
           { path: "", redirect: { name: "userList" } },
-          { path: "list", name: "userList", component: List }
+          { path: "list", name: "userList", component: () => import("../views/user/List.vue") }
         ]
       }
     ]
@@ -48,10 +40,10 @@ const routes = [
     path: "/about",
     name: "about",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import("../views/About.vue")
   },
   //Siempre a lo ultimo
-  { path: "*", component: Error404 }
+  { path: "*", component:() => import("../views/errors/404.vue") }
 ];
 
 const router = new VueRouter({

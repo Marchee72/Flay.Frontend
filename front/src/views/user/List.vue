@@ -25,12 +25,18 @@ import { Inject } from "inversify-props";
 import { User } from "../../models/User";
 import NewUserForm from "@/components/NewUserForm.vue";
 import { IUserService } from "../../interfaces/IUserService";
+import { namespace } from "vuex-class";
+const masterpage = namespace("masterpage");
 
 @Component({ components: { NewUserForm } })
 export default class List extends Vue {
   @Inject("Users") private userService!: IUserService;
 
   users!: User[];
+
+  @masterpage.Getter
+  loading!: boolean;
+
   search!: string;
   fab!: boolean;
   headers = [
@@ -48,8 +54,13 @@ export default class List extends Vue {
   }
 
   async created() {
+    this.loading = true;
+    this.updateLoading(this.loading);
     this.users = await this.userService.getAllUsers();
     console.log(this.users);
   }
+
+  @masterpage.Action
+  public updateLoading!: (load: boolean) => void;
 }
 </script>

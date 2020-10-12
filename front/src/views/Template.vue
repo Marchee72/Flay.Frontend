@@ -1,14 +1,12 @@
 <template>
-  <v-app root>
-    <AppBar app v-bind:drawer="this.showNavbar" @change="handle($event)" />
-    <NavDrawer app v-bind:drawer="this.showNavbar" />
-    <v-main>
+  <v-app app root>
+      <AppBar app v-bind:drawer="this.showNavbar" @change="handle($event)" />
+      <NavDrawer app v-bind:drawer="this.showNavbar" />
       <v-container fluid>
         <v-card>
           <router-view></router-view>
         </v-card>
       </v-container>
-    </v-main>
     <v-footer app>
       <span>&copy; {{ this.year }}</span>
     </v-footer>
@@ -29,7 +27,7 @@ export default class Template extends Vue {
     super();
     this.showNavbar = false;
   }
-  
+
   handle(show: boolean) {
     this.showNavbar = !this.showNavbar;
   }
