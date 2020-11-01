@@ -5,7 +5,7 @@
         <v-parallax
           class="fill-height"
           src="../resources/img/monumento.jpg"
-          height="500"
+          height="500" 
         >
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="4">
@@ -97,11 +97,13 @@ export default class Login extends Vue {
       localStorage.setItem("user", JSON.stringify(user));
       console.log("Welcome " + user.username);
       router.push({ name: "user" });
+      return;
     }
     this.$refs.form.resetValidation();
     this.badLogin = true;
     this.loading = false;
     this.error = "Usuario o contraseña incorrecta.";
   }
+  
 }
 </script>
