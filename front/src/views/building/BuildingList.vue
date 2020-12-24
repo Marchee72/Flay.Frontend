@@ -1,18 +1,18 @@
 <template>
   <v-container>
-    <BuildingsTable/>
+    <BuildingsTable />
+    <BuildingForm />
   </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import BuildingCard from "../../components/BuildingCard.vue";
 import BuildingsTable from "../../components/buildings/BuildingsTable.vue";
 import { IBuildingService } from "../../interfaces/IBuildingService";
 import { Building } from "../../models/Building";
-import NewBuildingForm from "../../components/NewBuildingForm.vue";
+import BuildingForm from "../../components/buildings/BuildingForm.vue";
 
-@Component({ components: { BuildingCard, NewBuildingForm, BuildingsTable } })
+@Component({ components: { BuildingForm, BuildingsTable } })
 export default class BuildingList extends Vue {
   buildings!: Building[];
   fab!: boolean;
