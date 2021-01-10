@@ -24,6 +24,7 @@ export class BuildingService implements IBuildingService {
     });
     return (await promise.json()) as Building;
   }
+  
   saveBuilding(building: Building) {
     fetch(URL("building", "save"), {
       headers: authHeader(),
@@ -31,5 +32,5 @@ export class BuildingService implements IBuildingService {
       method: "POST",
       body: JSON.stringify(building)
     });
-}
+  }
 }

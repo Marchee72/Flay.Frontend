@@ -25,21 +25,46 @@
                 ></v-text-field>
                 <v-row>
                   <v-col cols="6">
-                    <v-text-field dense label="Calle" outlined></v-text-field>
+                    <v-text-field
+                      dense
+                      v-bind="street"
+                      label="Calle"
+                      outlined
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="4">
-                    <v-text-field dense label="Numero" outlined></v-text-field>
+                    <v-text-field
+                      dense
+                      v-bind="streetNumber"
+                      label="Altura"
+                      outlined
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="2">
-                    <v-checkbox label="Bis" outlined> </v-checkbox>
+                    <v-checkbox label="Bis" v-bind="bis" outlined> </v-checkbox>
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="6">
-                    <CountInput label="culo"/>
+                  <v-col cols="4">
+                    <CountInput
+                      label="Torres"
+                      :initialValue="1"
+                      ref="towersComponent"
+                    />
                   </v-col>
-                  <v-col cols="6">
-                    <v-text-field dense label="Torres" outlined></v-text-field>
+                  <v-col cols="4">
+                    <CountInput
+                      label="Pisos"
+                      :initialValue="1"
+                      ref="floorsComponent"
+                    />
+                  </v-col>
+                  <v-col cols="4">
+                    <CountInput
+                      label="Deptos por piso"
+                      :initialValue="1"
+                      ref="apartmentComponent"
+                    />
                   </v-col>
                 </v-row>
               </v-col>
@@ -52,7 +77,7 @@
             Cancelar
           </v-btn>
 
-          <v-btn color="red darken-1" text> Guardar </v-btn>
+          <v-btn color="red darken-1" text @click="save()"> Guardar </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -61,22 +86,61 @@
 
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Ref } from "vue-property-decorator";
 import CountInput from "../common/CountInput.vue";
+import { Inject } from "inversify-props";
+import { IBuildingService } from "../../interfaces/IBuildingService";
+import { Building } from "../../models/Building";
+import ICountInput from "../../interfaces/components/ICountInput";
 
-@Component({components: {CountInput}})
+@Component({ components: { CountInput } })
 export default class BuildingForm extends Vue {
-  dialog: boolean;
-  valid: boolean;
-  depCount: number;
+  @Inject("Buildings") buildingService!: IBuildingService;
+  @Ref() readonly floorsComponent!: ICountInput;
+  @Ref() readonly towersComponent!: ICountInput;
+  @Ref() readonly apartmentComponent!: ICountInput;
+
+  dialog!: boolean;
+  valid!: boolean;
+
+  name!: string;
+  street!: string;
+  streetNumber!: number;
+  bis!: boolean;
+  depCount!: number;
+  towersCount!: number;
+  floorCount!: number;
   /**
    *
    */
   constructor() {
     super();
+    this.name = this.street = "";
+    this.streetNumber = 0;
+    this.bis = false;
+    this.towersCount = 0;
     this.depCount = 1;
     this.dialog = false;
     this.valid = true;
+  }
+
+  set floors(value) {
+    this.floorCount = value;
+    console.log(value);
+  }
+
+  save() {
+    this.floorCount = this.floorsComponent.count;
+    console.log(this.floors);
+    var building = new Building(
+      this.name,
+      this.street,
+      this.streetNumber,
+      this.bis,
+      this.floorCount,
+      new Userlw()
+    );
+    this.buildingService.saveBuilding(building);
   }
 }
 </script>

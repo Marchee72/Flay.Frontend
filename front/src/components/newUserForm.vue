@@ -77,7 +77,7 @@ import { Role } from "../models/Role";
 
 @Component
 export default class NewUSerForm extends Vue {
-  @Inject("Users") private userService!: IUserService;
+  @Inject("Users") userService!: IUserService;
   items!: { text: string; value: string }[];
   roles!: Role[];
   name!: string;
