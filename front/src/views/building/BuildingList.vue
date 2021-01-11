@@ -8,8 +8,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import BuildingsTable from "../../components/buildings/BuildingsTable.vue";
-import { IBuildingService } from "../../interfaces/IBuildingService";
-import { Building } from "../../models/Building";
+import { IBuildingService } from "../../interfaces/services/IBuildingService";
+import Building from "../../models/Building";
 import BuildingForm from "../../components/buildings/BuildingForm.vue";
 
 @Component({ components: { BuildingForm, BuildingsTable } })

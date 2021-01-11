@@ -2,10 +2,10 @@ import { injectable } from "inversify-props";
 import { Access } from "@/models/Access";
 import authHeader from "@/helpers/auth-header";
 import { URL } from "@/helpers/http-helpers";
-import { IUserService } from "@/interfaces/IUserService";
+import { IUserService } from "@/interfaces/services/IUserService";
 import { User } from "@/models/User";
 import { Role } from "@/models/Role";
-import { UserLw } from "@/models/lw/UserLw";
+import UserLw from "@/models/lw/UserLw";
 
 @injectable()
 export class UserService implements IUserService {

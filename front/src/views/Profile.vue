@@ -45,7 +45,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import { IUserService } from "../interfaces/IUserService";
+import { IUserService } from "../interfaces/services/IUserService";
 import { Inject } from "inversify-props";
 import { toBase64, generateRandomColor } from "../helpers/img-helpers";
 import { User } from "../models/User";

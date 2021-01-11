@@ -34,8 +34,8 @@
 <script lang="ts">
 import { Inject } from "inversify-props";
 import { Vue, Component } from "vue-property-decorator";
-import { IBuildingService } from "../../interfaces/IBuildingService";
-import { Building } from "../../models/Building";
+import { IBuildingService } from "../../interfaces/services/IBuildingService";
+import Building from "../../models/Building";
 
 @Component
 export default class BuildingsTable extends Vue {

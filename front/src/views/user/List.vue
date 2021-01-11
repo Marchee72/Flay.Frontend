@@ -23,8 +23,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Inject } from "inversify-props";
 import { User } from "../../models/User";
-import NewUserForm from "@/components/NewUserForm.vue";
-import { IUserService } from "../../interfaces/IUserService";
+import { IUserService } from "../../interfaces/services/IUserService";
 import { namespace } from "vuex-class";
 const masterpage = namespace("Masterpage");
 

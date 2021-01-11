@@ -51,7 +51,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import router from "../../router";
 import { Access } from "../../models/Access";
 import { User } from "../../models/User";
-import { IUserService } from "../../interfaces/IUserService";
+import { IUserService } from "../../interfaces/services/IUserService";
 import { Inject } from "inversify-props";
 
 @Component

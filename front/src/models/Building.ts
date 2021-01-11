@@ -1,28 +1,40 @@
-import { User } from "./User";
-import { UserLw } from "./lw/UserLw";
+import UserLw  from "./lw/UserLw";
 
-export class Building {
+export default class Building {
   id!: string;
   buildingName!: string;
   streetName!: string;
   streetNumber!: number;
   bis!: boolean;
   floors!: number;
+  towers!: number;
+  aparments!: number;
   administrator!: UserLw;
 
-  constructor(
+  set(
     buildingName: string,
     streetName: string,
     streetNumber: number,
     bis: boolean,
     floors: number,
+    towers: number,
+    apartments: number,
     administrator: UserLw
   ) {
     this.buildingName = buildingName;
     this.streetName = streetName;
     this.streetNumber = streetNumber;
     this.bis = bis;
-    //this.floors = floors;
+    this.floors = floors;
+    this.towers = towers;
+    this.aparments = apartments;
     this.administrator = administrator;
+    return this;
+  }
+
+  /**
+   *
+   */
+  constructor() {    
   }
 }

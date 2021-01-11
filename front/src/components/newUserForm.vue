@@ -70,7 +70,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { IUserService } from "../interfaces/IUserService";
+import { IUserService } from "../interfaces/services/IUserService";
 import { Inject } from "inversify-props";
 import { User } from "../models/User";
 import { Role } from "../models/Role";

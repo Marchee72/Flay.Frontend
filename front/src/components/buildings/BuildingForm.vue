@@ -18,6 +18,7 @@
                   label="Edificio"
                   dense
                   outlined
+                  v-model="name"
                   :rules="[
                     (v) => !!v || 'El nombre del edificio es requerido.',
                   ]"
@@ -27,7 +28,7 @@
                   <v-col cols="6">
                     <v-text-field
                       dense
-                      v-bind="street"
+                      v-model="street"
                       label="Calle"
                       outlined
                     ></v-text-field>
@@ -35,13 +36,13 @@
                   <v-col cols="4">
                     <v-text-field
                       dense
-                      v-bind="streetNumber"
+                      v-model="streetNumber"
                       label="Altura"
                       outlined
                     ></v-text-field>
                   </v-col>
                   <v-col cols="2">
-                    <v-checkbox label="Bis" v-bind="bis" outlined> </v-checkbox>
+                    <v-checkbox label="Bis" v-model="bis" outlined> </v-checkbox>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -67,6 +68,7 @@
                     />
                   </v-col>
                 </v-row>
+                <AdminSelect ref="adminComponent" />
               </v-col>
             </v-form>
           </v-container>
@@ -77,7 +79,9 @@
             Cancelar
           </v-btn>
 
-          <v-btn color="red darken-1" text @click="save()"> Guardar </v-btn>
+          <v-btn color="red darken-1" text @click="partialSave">
+            Continuar
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -86,19 +90,26 @@
 
 
 <script lang="ts">
-import { Vue, Component, Ref } from "vue-property-decorator";
+import { Vue, Component, Ref, Watch } from "vue-property-decorator";
 import CountInput from "../common/CountInput.vue";
+import AdminSelect from "../common/AdminSelect.vue";
 import { Inject } from "inversify-props";
-import { IBuildingService } from "../../interfaces/IBuildingService";
-import { Building } from "../../models/Building";
+import { IBuildingService } from "../../interfaces/services/IBuildingService";
+import Building from "../../models/Building";
 import ICountInput from "../../interfaces/components/ICountInput";
+import IAdminSelect from "../../interfaces/components/IAdminSelect";
+import UserLw from "../../models/lw/UserLw";
+import { namespace } from "vuex-class";
 
-@Component({ components: { CountInput } })
+const buildingStore = namespace("BuildingStore");
+
+@Component({ components: { CountInput, AdminSelect } })
 export default class BuildingForm extends Vue {
   @Inject("Buildings") buildingService!: IBuildingService;
   @Ref() readonly floorsComponent!: ICountInput;
   @Ref() readonly towersComponent!: ICountInput;
   @Ref() readonly apartmentComponent!: ICountInput;
+  @Ref() readonly adminComponent!: IAdminSelect;
 
   dialog!: boolean;
   valid!: boolean;
@@ -107,40 +118,58 @@ export default class BuildingForm extends Vue {
   street!: string;
   streetNumber!: number;
   bis!: boolean;
-  depCount!: number;
+  apartmentsCount!: number;
   towersCount!: number;
   floorCount!: number;
+  admin!: UserLw;
+
+  @buildingStore.Action
+  updateBuilding!: (building: Building) => void;
+
+  @buildingStore.State
+  building!: Building;
   /**
    *
    */
   constructor() {
     super();
     this.name = this.street = "";
+    this.dialog = false;
+    this.admin = null;
     this.streetNumber = 0;
     this.bis = false;
-    this.towersCount = 0;
-    this.depCount = 1;
-    this.dialog = false;
+    this.apartmentsCount = this.towersCount = this.floorCount = 1;
     this.valid = true;
   }
 
-  set floors(value) {
-    this.floorCount = value;
-    console.log(value);
-  }
-
-  save() {
+  partialSave() {
     this.floorCount = this.floorsComponent.count;
-    console.log(this.floors);
-    var building = new Building(
+    this.apartmentsCount = this.apartmentComponent.count;
+    this.towersCount = this.towersComponent.count;
+    this.admin = this.adminComponent.selectedAdmin;
+    var building = new Building().set(
       this.name,
       this.street,
       this.streetNumber,
       this.bis,
       this.floorCount,
-      new Userlw()
+      this.towersCount,
+      this.apartmentsCount,
+      this.admin
     );
-    this.buildingService.saveBuilding(building);
+    // this.buildingService.saveBuilding(building);
+    this.updateBuilding(building);
+    var a = this.building;
+    console.log(a);
+  }
+
+  reset() {
+    this.$refs.form.reset();
+  }
+
+  @Watch("dialog")
+  cleanForm() {
+    if (!this.dialog) this.reset();
   }
 }
 </script>

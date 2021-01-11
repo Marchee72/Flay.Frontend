@@ -1,7 +1,7 @@
 import { Access } from "@/models/Access";
 import { User } from "@/models/User";
 import { Role } from "@/models/Role";
-import { UserLw } from "@/models/lw/UserLw";
+import UserLw from "@/models/lw/UserLw";
 
 export interface IUserService {
   saveUser(user: User): void;

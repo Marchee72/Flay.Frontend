@@ -84,10 +84,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { Inject } from "inversify-props";
-import { IUserService } from "../interfaces/IUserService";
-import { UserLw } from "../models/lw/UserLw";
-import { IBuildingService } from "../interfaces/IBuildingService";
-import { Building } from "../models/Building";
+import { IUserService } from "../interfaces/services/IUserService";
+import UserLw from "../models/lw/UserLw";
+import { IBuildingService } from "../interfaces/services/IBuildingService";
+import Building from "../models/Building";
 
 @Component
 export default class NewBuildingForm extends Vue {

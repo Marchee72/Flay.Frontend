@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { IAuthService } from "../interfaces/IAuthService";
+import { IAuthService } from "../interfaces/services/IAuthService";
 import { Inject } from "inversify-props";
 import router from "../router";
 

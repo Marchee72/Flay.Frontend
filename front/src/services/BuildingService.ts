@@ -2,8 +2,8 @@ import { injectable } from "inversify-props";
 import authHeader from "@/helpers/auth-header";
 import { User } from "@/models/User";
 import { URL } from "@/helpers/http-helpers";
-import { IBuildingService } from "@/interfaces/IBuildingService";
-import { Building } from "@/models/Building";
+import { IBuildingService } from "@/interfaces/services/IBuildingService";
+import Building from "@/models/Building";
 
 @injectable()
 export class BuildingService implements IBuildingService {

@@ -1,6 +1,6 @@
 import { injectable } from "inversify-props";
 import { User } from "@/models/User";
-import { IAuthService } from "@/interfaces/IAuthService";
+import { IAuthService } from "@/interfaces/services/IAuthService";
 import authHeader from "@/helpers/auth-header";
 import {URL} from "@/helpers/http-helpers";
 

@@ -1,10 +1,10 @@
 import { container } from "inversify-props";
 import "reflect-metadata";
-import { IAuthService } from "./interfaces/IAuthService";
+import { IAuthService } from "./interfaces/services/IAuthService";
 import { AuthService } from "./services/AuthService";
-import { IUserService } from "./interfaces/IUserService";
+import { IUserService } from "./interfaces/services/IUserService";
 import { UserService } from "./services/UserService";
-import { IBuildingService } from "./interfaces/IBuildingService";
+import { IBuildingService } from "./interfaces/services/IBuildingService";
 import { BuildingService } from "./services/BuildingService";
 
 export function containerBuilder() {
