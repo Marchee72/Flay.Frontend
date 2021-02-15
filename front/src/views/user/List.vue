@@ -24,8 +24,11 @@ import { Component, Vue } from "vue-property-decorator";
 import { Inject } from "inversify-props";
 import { User } from "../../models/User";
 import { IUserService } from "../../interfaces/services/IUserService";
-import { namespace } from "vuex-class";
-const masterpage = namespace("Masterpage");
+import NewUserForm from "../../components/NewUserForm.vue";
+import MasterpageStore from "../../store/modules/masterpageStore";
+
+import { getModule } from "vuex-module-decorators";
+const masterpage = getModule(MasterpageStore);
 
 @Component({ components: { NewUserForm } })
 export default class List extends Vue {
@@ -33,7 +36,6 @@ export default class List extends Vue {
 
   users!: User[];
 
-  @masterpage.Getter
   loading!: boolean;
 
   search!: string;
@@ -53,13 +55,10 @@ export default class List extends Vue {
   }
 
   async created() {
-    this.updateLoading(true);
+    masterpage.updateLoading(true);
     this.users = await this.userService.getAllUsers();
     console.log(this.users);
-    this.updateLoading(false);
+    masterpage.updateLoading(false);
   }
-
-  @masterpage.Action
-  public updateLoading!: (load: boolean) => void;
 }
 </script>

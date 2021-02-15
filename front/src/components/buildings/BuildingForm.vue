@@ -42,7 +42,8 @@
                     ></v-text-field>
                   </v-col>
                   <v-col cols="2">
-                    <v-checkbox label="Bis" v-model="bis" outlined> </v-checkbox>
+                    <v-checkbox label="Bis" v-model="bis" outlined>
+                    </v-checkbox>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -92,6 +93,7 @@
 <script lang="ts">
 import { Vue, Component, Ref, Watch } from "vue-property-decorator";
 import CountInput from "../common/CountInput.vue";
+import router from "../../router";
 import AdminSelect from "../common/AdminSelect.vue";
 import { Inject } from "inversify-props";
 import { IBuildingService } from "../../interfaces/services/IBuildingService";
@@ -99,9 +101,12 @@ import Building from "../../models/Building";
 import ICountInput from "../../interfaces/components/ICountInput";
 import IAdminSelect from "../../interfaces/components/IAdminSelect";
 import UserLw from "../../models/lw/UserLw";
-import { namespace } from "vuex-class";
+import BuildingStore from "../../store/modules/buildingStore";
+import MasterpageStore from "../../store/modules/masterpageStore";
+import { getModule } from "vuex-module-decorators";
 
-const buildingStore = namespace("BuildingStore");
+const buildingStore = getModule(BuildingStore);
+const masterpageStore = getModule(MasterpageStore);
 
 @Component({ components: { CountInput, AdminSelect } })
 export default class BuildingForm extends Vue {
@@ -123,11 +128,11 @@ export default class BuildingForm extends Vue {
   floorCount!: number;
   admin!: UserLw;
 
-  @buildingStore.Action
-  updateBuilding!: (building: Building) => void;
+  // @buildingStore.Action
+  // updateBuilding!: (building: Building) => void;
 
-  @buildingStore.State
-  building!: Building;
+  // @buildingStore.State
+  // building!: Building;
   /**
    *
    */
@@ -157,10 +162,9 @@ export default class BuildingForm extends Vue {
       this.apartmentsCount,
       this.admin
     );
-    // this.buildingService.saveBuilding(building);
-    this.updateBuilding(building);
-    var a = this.building;
-    console.log(a);
+    masterpageStore.updateLoading(true);
+    buildingStore.updateBuilding(building);
+    router.push({name: "buildingEdit"});
   }
 
   reset() {

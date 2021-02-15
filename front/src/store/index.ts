@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Masterpage from "./masterpage";
-import BuildingStore from "./buildingStore";
+import MasterpageStore from "./modules/masterpageStore";
+import BuildingStore from "./modules/buildingStore";
 
 Vue.use(Vuex);
 
@@ -10,7 +10,7 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    Masterpage,
-    BuildingStore
+    // MasterpageStore,
+    // BuildingStore
   }
 });
