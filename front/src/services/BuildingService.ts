@@ -7,6 +7,7 @@ import Building from "@/models/Building";
 
 @injectable()
 export class BuildingService implements IBuildingService {
+
   async getAllBuildings(): Promise<Building[]> {
     const promise = await fetch(URL("building", "getAll"), {
       headers: authHeader(),
@@ -16,8 +17,8 @@ export class BuildingService implements IBuildingService {
     return (await promise.json()) as Building[];
   }
 
-  async getBuildingInformation(): Promise<Building> {
-    const promise = await fetch(URL("building", "getBuilding"), {
+  async getBuilding(id: string): Promise<Building> {
+    const promise = await fetch(URL("building", "getBuilding", "id", id), {
       headers: authHeader(),
       credentials: "same-origin",
       method: "GET"

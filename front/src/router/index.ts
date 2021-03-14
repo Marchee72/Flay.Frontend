@@ -20,9 +20,8 @@ const routes = [
         children: [
           { path: "", redirect: { name: "buildingList" } },
           { path: "list", name: "buildingList", component: () => import("../views/building/BuildingList.vue") },
-          { path: "new", name: "buildingNew", component: () => import("../views/building/BuildingNew.vue") },
-          { path: "edit", name: "buildingEdit", component: () => import("../views/building/BuildingEdit.vue") }
-
+          { path: "new", name: "buildingNew", component: () => import("../views/building/BuildingDetails.vue") },
+          { path: "edit/:id", name: "buildingEdit", props: true, component: () => import("../views/building/BuildingDetails.vue") }
         ]
       },
       { path: "/profile", name: "profile", component: () => import("../views/Profile.vue") },

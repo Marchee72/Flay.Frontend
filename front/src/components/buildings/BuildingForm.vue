@@ -164,7 +164,7 @@ export default class BuildingForm extends Vue {
     );
     masterpageStore.updateLoading(true);
     buildingStore.updateBuilding(building);
-    router.push({name: "buildingEdit"});
+    router.push({name: "buildingNew"});
   }
 
   reset() {

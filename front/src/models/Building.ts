@@ -2,7 +2,7 @@ import UserLw  from "./lw/UserLw";
 
 export default class Building {
   id!: string;
-  buildingName!: string;
+  name!: string;
   streetName!: string;
   streetNumber!: number;
   bis!: boolean;
@@ -21,7 +21,7 @@ export default class Building {
     apartments: number,
     administrator: UserLw
   ) {
-    this.buildingName = buildingName;
+    this.name = buildingName;
     this.streetName = streetName;
     this.streetNumber = streetNumber;
     this.bis = bis;

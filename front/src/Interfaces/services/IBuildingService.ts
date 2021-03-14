@@ -1,7 +1,7 @@
 import Building from "@/models/Building";
 
 export interface IBuildingService {
-  getBuildingInformation(): Promise<Building>;
+  getBuilding(id: string): Promise<Building>;
   getAllBuildings(): Promise<Building[]>;
   saveBuilding(building: Building): void;
 }

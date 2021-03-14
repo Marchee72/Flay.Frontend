@@ -32,7 +32,7 @@ const masterpage = getModule(MasterpageStore);
 
 @Component({ components: { NewUserForm } })
 export default class List extends Vue {
-  @Inject("Users") private userService!: IUserService;
+  @Inject("Users") userService!: IUserService;
 
   users!: User[];
 
