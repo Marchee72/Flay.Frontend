@@ -5,7 +5,7 @@
         <v-parallax
           class="fill-height"
           src="../resources/img/monumento.jpg"
-          height="500" 
+          height="500"
         >
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="4">
@@ -15,14 +15,14 @@
                   <v-spacer />
                 </v-toolbar>
                 <v-card-text>
-                  <v-form ref="form" v-model="valid">
+                  <v-form ref="form" v-model="valid" lazy-validation>
                     <p class="text-center red--text" v-if="error">
                       {{ error }}
                     </p>
                     <v-text-field
                       label="Username"
                       name="username"
-                      :rules="[v => !!v || 'El usuario es requerido.']"
+                      :rules="[(v) => !!v || 'El usuario es requerido.']"
                       :error="badLogin"
                       @keyup.enter="login"
                       prepend-icon="person"
@@ -35,7 +35,7 @@
                       id="password"
                       label="Contraseña"
                       name="password"
-                      :rules="[v => !!v || 'La contraseña es requerida.']"
+                      :rules="[(v) => !!v || 'La contraseña es requerida.']"
                       :error="badLogin"
                       @keyup.enter="login"
                       prepend-icon="lock"
@@ -59,7 +59,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { IAuthService } from "../interfaces/services/IAuthService";
 import { Inject } from "inversify-props";
 import router from "../router";
@@ -80,30 +80,39 @@ export default class Login extends Vue {
     this.user = "";
     this.pass = "";
     this.error = "";
-    this.valid = true;
     this.badLogin = this.loading = false;
   }
 
   async login() {
     this.badLogin = false;
     this.loading = true;
-    this.$refs.form.validate();
-    if (this.valid)
-      var user = await this.authenticationService.authenticate(
-        this.user,
-        this.pass
-      );
-    if (user.username && user.token) {
-      localStorage.setItem("user", JSON.stringify(user));
-      console.log("Welcome " + user.username);
-      router.push({ name: "user" });
-      return;
-    }
     this.$refs.form.resetValidation();
+    this.$refs.form.validate();
+    if (this.valid) {
+      var user = await this.authenticationService
+        .authenticate(this.user, this.pass)
+        .catch((e) => {
+          this.loading = false;
+          throw Error(
+            "No es posible conectarse con el servidor. Intente mas tarde."
+          );
+        });
+      if (user.username && user.token) {
+        localStorage.setItem("user", JSON.stringify(user));
+        console.log("Welcome " + user.username);
+        router.push({ name: "user" });
+        return;
+      }
+    }
     this.badLogin = true;
     this.loading = false;
+    this.$refs.form.resetValidation();
     this.error = "Usuario o contraseña incorrecta.";
   }
-  
+
+  @Watch("valid")
+  isValid(){
+    console.log(this.valid);
+  }
 }
 </script>

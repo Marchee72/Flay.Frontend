@@ -2,7 +2,40 @@
   <v-container>
     <v-dialog v-model="dialog" width="600">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on" fab right bottom fixed>
+        <v-btn
+          v-if="canCreate()"
+          color="primary"
+          dark
+          v-on="on"
+          fab
+          right
+          bottom
+          fixed
+        >
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+        <v-btn
+          v-else-if="canEdit()"
+          color="default"
+          dark
+          v-on="on"
+          fab
+          right
+          bottom
+          fixed
+        >
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+        <v-btn
+          v-else-if="canDelete()"
+          color="success"
+          dark
+          v-on="on"
+          fab
+          right
+          bottom
+          fixed
+        >
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </template>
@@ -91,7 +124,7 @@
 
 
 <script lang="ts">
-import { Vue, Component, Ref, Watch } from "vue-property-decorator";
+import { Vue, Component, Ref, Watch, Prop } from "vue-property-decorator";
 import CountInput from "../common/CountInput.vue";
 import router from "../../router";
 import AdminSelect from "../common/AdminSelect.vue";
@@ -104,6 +137,7 @@ import UserLw from "../../models/lw/UserLw";
 import BuildingStore from "../../store/modules/buildingStore";
 import MasterpageStore from "../../store/modules/masterpageStore";
 import { getModule } from "vuex-module-decorators";
+import { ActionType } from "@/models/enums/ActionType";
 
 const buildingStore = getModule(BuildingStore);
 const masterpageStore = getModule(MasterpageStore);
@@ -115,6 +149,7 @@ export default class BuildingForm extends Vue {
   @Ref() readonly towersComponent!: ICountInput;
   @Ref() readonly apartmentComponent!: ICountInput;
   @Ref() readonly adminComponent!: IAdminSelect;
+  @Prop({default: ActionType.New}) actionType!: ActionType;
 
   dialog!: boolean;
   valid!: boolean;
@@ -140,7 +175,7 @@ export default class BuildingForm extends Vue {
     super();
     this.name = this.street = "";
     this.dialog = false;
-    this.admin = null;
+    //this.admin = {};
     this.streetNumber = 0;
     this.bis = false;
     this.apartmentsCount = this.towersCount = this.floorCount = 1;
@@ -164,11 +199,23 @@ export default class BuildingForm extends Vue {
     );
     masterpageStore.updateLoading(true);
     buildingStore.updateBuilding(building);
-    router.push({name: "buildingNew"});
+    router.push({ name: "buildingNew" });
   }
 
   reset() {
     this.$refs.form.reset();
+  }
+
+  canCreate(): boolean {
+    return this.actionType === ActionType.New;
+  }
+
+  canEdit(): boolean {
+    return this.actionType === ActionType.Edit;
+  }
+
+  canDelete(): boolean {
+    return this.actionType === ActionType.Delete;
   }
 
   @Watch("dialog")

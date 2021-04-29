@@ -1,6 +1,6 @@
 <template>
   <v-select
-    dense
+    :dense="dense"
     v-model="selectedAdmin"
     :items="admins"
     return-object
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import { Inject } from "inversify-props";
 import UserLw from "../../models/lw/UserLw";
 import { IUserService } from "../../interfaces/services/IUserService";
@@ -23,6 +23,7 @@ import IAdminSelect from "../../interfaces/components/IAdminSelect";
 export default class AdminSelect extends Vue implements IAdminSelect {
   @Inject("Users") private userService!: IUserService;
 
+  @Prop({default: false}) dense!: boolean;
   admins!: UserLw[];
   selectedAdmin!: UserLw;
   /**

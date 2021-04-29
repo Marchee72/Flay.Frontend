@@ -2,7 +2,7 @@
   <v-text-field
     v-model="count"
     :rules="[(v) => RegExp('^(0|[1-9][0-9]*)$').test(v) || 'Valor incorrecto.']"
-    dense
+    :dense="dense"
     :label="label"
     outlined
     readonly
@@ -21,6 +21,7 @@ export default class CountInput extends Vue implements ICountInput {
    *
    */
   @Prop({ default: 0 }) initialValue!: number;
+  @Prop({default: false}) dense!: boolean;
   @Prop() label!: string;
   count: number;
   constructor() {

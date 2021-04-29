@@ -9,7 +9,7 @@ export default class MasterpageStore extends VuexModule {
         this.loading = load;
     }
     @Action
-    public updateLoading(load: boolean): void {
+    updateLoading(load: boolean): void {
         this.context.commit("setLoading", load)
     }
 }
